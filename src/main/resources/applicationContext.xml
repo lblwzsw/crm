@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:tx="http://www.springframework.org/schema/tx" 
+    xmlns:p="http://www.springframework.org/schema/p" 
+    xmlns:util="http://www.springframework.org/schema/util" 
+    xmlns:jdbc="http://www.springframework.org/schema/jdbc"  
+    xsi:schemaLocation="  
+    http://www.springframework.org/schema/context  
+    http://www.springframework.org/schema/context/spring-context.xsd  
+    http://www.springframework.org/schema/beans  
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/tx  
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    "
+    >
+    <context:component-scan base-package="com.lwz">
+    	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+    	<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+    	<property name="url" value="jdbc:mysql://localhost:3306/oaec?characterEncoding=utf-8"></property>
+    	<property name="username" value="root"></property>
+    	<property name="password" value=""></property>
+    </bean>
+    
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    	<property name="dataSource" ref="dataSource"></property>
+    	<property name="typeAliasesPackage" value="com.lwz.entity"></property>
+    	<property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+    </bean>
+    
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    	<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+    	<property name="basePackage" value="com.lwz.dao"></property>
+    </bean>	
+    
+   	<!--平台事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    	<property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    
+    <!-- <bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean> -->
+    
+    
+    
+</beans>
