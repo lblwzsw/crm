@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -15,7 +15,7 @@
 		<h3>账号管理</h3>
 	</div>
 	<div style="margin: 20px 20px;width: 1000px">
-		<c:if test="${user.jobInfoId==1 }">
+		<c:if test="${user.jobinfoId==1 }">	
 		<span style="font-size: 18;font-weight: bold;">功能导航：</span><a href="javascript:void(0)"
 			class="easyui-linkbutton" iconCls="icon-add"
 			onclick="javascript:$('#admin-dlg').dialog('open').dialog('center').dialog('setTitle','新增管理员');"
@@ -27,7 +27,7 @@
 			</span>
 			</c:if>
 			
-			<c:if test="${user.jobInfoId==2 }">
+			<c:if test="${user.jobinfoId==2 }">
 			 <span
 			style="margin-left: 30px"><a href="javascript:void(0)" class="easyui-linkbutton"
 			data-options="iconCls:'icon-add'" style="height: 32px"
@@ -106,7 +106,7 @@
 				<p>
 					<label for="job" class="label-top">所任职位:</label> <input id="cc2" class="easyui-combobox"
 						data-options="valueField:'id',textField:'job'" style="width: 150px" panelHeight='auto'
-						editable='false' name="jobInfoId" />
+						editable='false' name="jobinfoId" />
 				</p>
 			</div>
 			<div>

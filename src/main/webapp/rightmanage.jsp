@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -34,8 +34,7 @@
 			$("#rt-dg").edatagrid({onLoadSuccess:function(){
 				$('#rt-query').panel('open');
 			}});
-			
-		})}
+		},"json")}
 	
 	
 		function saveRight() {

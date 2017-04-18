@@ -62,7 +62,7 @@
 		oldPwd=hex_sha1(oldPwd);
 		var newPwd=hex_sha1($("#newPass").val());
 		
-		$.post("changePass.do",{employeeId:${user.id},pass:oldPwd,newPass:newPwd},function(data){
+		$.post("changePass.do",{employeeId:"${user.id}",pass:oldPwd,newPass:newPwd},function(data){
 			
 			if(data=="1"){
 				
@@ -112,7 +112,7 @@
 		<div style="margin-top: 6px;float: left;margin-left: 600px">
 			<img src="images/oracle.png">
 		</div>
-		<div align="right" style="float: left;margin-left: 400px;margin-top: 40px">r
+		<div align="right" style="float: left;margin-left: 400px;margin-top: 40px">
 			<span>当前用户:<a href="javascript:$('#user-dlg').dialog('open')">${user.nickname }</a></span>&nbsp;&nbsp;<a
 				href="javascript:logout()">注销</a>
 		</div>
@@ -186,10 +186,10 @@
 		<div id="aa" class="easyui-accordion" style="width:190px;">
 			<div title="我的CRM" style="padding:10px;" selected="false" border="false">
 				<c:forEach items="${rights}" var="r">
-					<input type="hidden" id="${r.url}" value="${r.rightName}">
+					<input type="hidden" id="${r.url}" value="${r.rName}">
 					<div style="margin:10px;text-align: center">
-						<a id="${r.rid}" href="javascript:void(0)" class="easyui-linkbutton" plain="false"
-							onclick="newTab('${r.rightName}', '${r.url}')" style="width: 100px;height: 20px">${r.rightName}</a>
+						<a id="${r.id}" href="javascript:void(0)" class="easyui-linkbutton" plain="false"
+							onclick="newTab('${r.rName}', '${r.url}')" style="width: 100px;height: 20px">${r.rName}</a>
 					</div>
 				</c:forEach>
 			</div>

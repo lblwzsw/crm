@@ -7,18 +7,66 @@
     	<property name="suppressAllComments" value="true" />
     </commentGenerator>
     
-    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/oaec?characterEncoding=utf-8" userId="root" password="" />
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/crm?characterEncoding=utf-8" userId="root" password="" />
     <javaTypeResolver>
         <property name="forceBigDecimals" value="false" />
     </javaTypeResolver>
     <javaModelGenerator targetPackage="com.lwz.entity" targetProject="rcm" />
     <sqlMapGenerator targetPackage="com.lwz.mapper" targetProject="rcm" />
     <javaClientGenerator targetPackage="com.lwz.dao" targetProject="rcm" type="XMLMAPPER" />
-    <table schema="" tableName="course" domainObjectName="Course"
-     enableCountByExample="false"
-     enableUpdateByExample="false" 
-     enableDeleteByExample="false" 
-     enableSelectByExample="false" 
-     selectByExampleQueryId="false"></table>
+    <table schema="" tableName="consult_record" domainObjectName="ConsultRecord"
+    enableCountByExample="false"
+    enableUpdateByExample="false" 
+    enableDeleteByExample="false" 
+    enableSelectByExample="false" 
+    selectByExampleQueryId="false"></table>
+    <table schema="" tableName="custom" domainObjectName="Custom"
+    enableCountByExample="false"
+    enableUpdateByExample="false" 
+    enableDeleteByExample="false" 
+    enableSelectByExample="false" 
+    selectByExampleQueryId="false"></table>
+    <table schema="" tableName="custom_info" domainObjectName="CustomInfo"
+    enableCountByExample="false"
+    enableUpdateByExample="false" 
+    enableDeleteByExample="false" 
+    enableSelectByExample="false" 
+    selectByExampleQueryId="false"></table>
+    <table schema="" tableName="department" domainObjectName="Department"
+    enableCountByExample="false"
+    enableUpdateByExample="false" 
+    enableDeleteByExample="false" 
+    enableSelectByExample="false" 
+    selectByExampleQueryId="false"></table>
+    <table schema="" tableName="employee" domainObjectName="Employee"
+    enableCountByExample="false"
+    enableUpdateByExample="false" 
+    enableDeleteByExample="false" 
+    enableSelectByExample="false" 
+    selectByExampleQueryId="false"></table>
+    <table schema="" tableName="job" domainObjectName="Job"
+    enableCountByExample="false"
+    enableUpdateByExample="false" 
+    enableDeleteByExample="false" 
+    enableSelectByExample="false" 
+    selectByExampleQueryId="false"></table>
+    <table schema="" tableName="job_right" domainObjectName="JobRight"
+    enableCountByExample="false"
+    enableUpdateByExample="false" 
+    enableDeleteByExample="false" 
+    enableSelectByExample="false" 
+    selectByExampleQueryId="false"></table>
+    <table schema="" tableName="resetpass" domainObjectName="Resetpass"
+    enableCountByExample="false"
+    enableUpdateByExample="false" 
+    enableDeleteByExample="false" 
+    enableSelectByExample="false" 
+    selectByExampleQueryId="false"></table>
+    <table schema="" tableName="right" domainObjectName="Right"
+    enableCountByExample="false"
+    enableUpdateByExample="false" 
+    enableDeleteByExample="false" 
+    enableSelectByExample="false" 
+    selectByExampleQueryId="false"></table>
   </context>
 </generatorConfiguration>

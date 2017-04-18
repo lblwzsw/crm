@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lwz.dao.EmployeeDao" >
+  <resultMap id="BaseResultMap" type="com.lwz.entity.Employee" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="CHAR" />
+    <result column="pass" property="pass" jdbcType="CHAR" />
+    <result column="nickname" property="nickname" jdbcType="CHAR" />
+    <result column="realname" property="realname" jdbcType="CHAR" />
+    <result column="jobInfo_id" property="jobinfoId" jdbcType="INTEGER" />
+    <result column="department_id" property="departmentId" jdbcType="INTEGER" />
+    <result column="phone_no" property="phoneNo" jdbcType="CHAR" />
+    <result column="office_tel" property="officeTel" jdbcType="CHAR" />
+    <result column="work_statu" property="workStatu" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, pass, nickname, realname, jobInfo_id, department_id, phone_no, office_tel, 
+    work_statu
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from employee
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from employee
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lwz.entity.Employee" >
+    insert into employee (id, username, pass, 
+      nickname, realname, jobInfo_id, 
+      department_id, phone_no, office_tel, 
+      work_statu)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=CHAR}, #{pass,jdbcType=CHAR}, 
+      #{nickname,jdbcType=CHAR}, #{realname,jdbcType=CHAR}, #{jobinfoId,jdbcType=INTEGER}, 
+      #{departmentId,jdbcType=INTEGER}, #{phoneNo,jdbcType=CHAR}, #{officeTel,jdbcType=CHAR}, 
+      #{workStatu,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lwz.entity.Employee" >
+    insert into employee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="pass != null" >
+        pass,
+      </if>
+      <if test="nickname != null" >
+        nickname,
+      </if>
+      <if test="realname != null" >
+        realname,
+      </if>
+      <if test="jobinfoId != null" >
+        jobInfo_id,
+      </if>
+      <if test="departmentId != null" >
+        department_id,
+      </if>
+      <if test="phoneNo != null" >
+        phone_no,
+      </if>
+      <if test="officeTel != null" >
+        office_tel,
+      </if>
+      <if test="workStatu != null" >
+        work_statu,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=CHAR},
+      </if>
+      <if test="pass != null" >
+        #{pass,jdbcType=CHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=CHAR},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=CHAR},
+      </if>
+      <if test="jobinfoId != null" >
+        #{jobinfoId,jdbcType=INTEGER},
+      </if>
+      <if test="departmentId != null" >
+        #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNo != null" >
+        #{phoneNo,jdbcType=CHAR},
+      </if>
+      <if test="officeTel != null" >
+        #{officeTel,jdbcType=CHAR},
+      </if>
+      <if test="workStatu != null" >
+        #{workStatu,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lwz.entity.Employee" >
+    update employee
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=CHAR},
+      </if>
+      <if test="pass != null" >
+        pass = #{pass,jdbcType=CHAR},
+      </if>
+      <if test="nickname != null" >
+        nickname = #{nickname,jdbcType=CHAR},
+      </if>
+      <if test="realname != null" >
+        realname = #{realname,jdbcType=CHAR},
+      </if>
+      <if test="jobinfoId != null" >
+        jobInfo_id = #{jobinfoId,jdbcType=INTEGER},
+      </if>
+      <if test="departmentId != null" >
+        department_id = #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNo != null" >
+        phone_no = #{phoneNo,jdbcType=CHAR},
+      </if>
+      <if test="officeTel != null" >
+        office_tel = #{officeTel,jdbcType=CHAR},
+      </if>
+      <if test="workStatu != null" >
+        work_statu = #{workStatu,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lwz.entity.Employee" >
+    update employee
+    set username = #{username,jdbcType=CHAR},
+      pass = #{pass,jdbcType=CHAR},
+      nickname = #{nickname,jdbcType=CHAR},
+      realname = #{realname,jdbcType=CHAR},
+      jobInfo_id = #{jobinfoId,jdbcType=INTEGER},
+      department_id = #{departmentId,jdbcType=INTEGER},
+      phone_no = #{phoneNo,jdbcType=CHAR},
+      office_tel = #{officeTel,jdbcType=CHAR},
+      work_statu = #{workStatu,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByUsername" resultMap="BaseResultMap">
+  	select
+    id, username, nickname, realname, jobInfo_id, department_id, phone_no, office_tel,work_statu
+    from employee where username = #{username,jdbcType=CHAR} and pass = #{pass,jdbcType=CHAR}
+  </select>
+</mapper>

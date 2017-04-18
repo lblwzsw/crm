@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lwz.dao.CustomDao" >
+  <resultMap id="BaseResultMap" type="com.lwz.entity.Custom" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="education" property="education" jdbcType="CHAR" />
+    <result column="phone_no" property="phoneNo" jdbcType="CHAR" />
+    <result column="qq" property="qq" jdbcType="INTEGER" />
+    <result column="email" property="email" jdbcType="CHAR" />
+    <result column="custom_statu" property="customStatu" jdbcType="CHAR" />
+    <result column="create_date" property="createDate" jdbcType="DATE" />
+    <result column="invite_name" property="inviteName" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, education, phone_no, qq, email, custom_statu, create_date, invite_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from custom
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from custom
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lwz.entity.Custom" >
+    insert into custom (id, name, education, 
+      phone_no, qq, email, custom_statu, 
+      create_date, invite_name)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, #{education,jdbcType=CHAR}, 
+      #{phoneNo,jdbcType=CHAR}, #{qq,jdbcType=INTEGER}, #{email,jdbcType=CHAR}, #{customStatu,jdbcType=CHAR}, 
+      #{createDate,jdbcType=DATE}, #{inviteName,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lwz.entity.Custom" >
+    insert into custom
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="phoneNo != null" >
+        phone_no,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="customStatu != null" >
+        custom_statu,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="inviteName != null" >
+        invite_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=CHAR},
+      </if>
+      <if test="phoneNo != null" >
+        #{phoneNo,jdbcType=CHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=CHAR},
+      </if>
+      <if test="customStatu != null" >
+        #{customStatu,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="inviteName != null" >
+        #{inviteName,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lwz.entity.Custom" >
+    update custom
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=CHAR},
+      </if>
+      <if test="phoneNo != null" >
+        phone_no = #{phoneNo,jdbcType=CHAR},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=CHAR},
+      </if>
+      <if test="customStatu != null" >
+        custom_statu = #{customStatu,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="inviteName != null" >
+        invite_name = #{inviteName,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lwz.entity.Custom" >
+    update custom
+    set name = #{name,jdbcType=CHAR},
+      education = #{education,jdbcType=CHAR},
+      phone_no = #{phoneNo,jdbcType=CHAR},
+      qq = #{qq,jdbcType=INTEGER},
+      email = #{email,jdbcType=CHAR},
+      custom_statu = #{customStatu,jdbcType=CHAR},
+      create_date = #{createDate,jdbcType=DATE},
+      invite_name = #{inviteName,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

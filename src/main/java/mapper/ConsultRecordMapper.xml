@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lwz.dao.ConsultRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.lwz.entity.ConsultRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="c_id" property="cId" jdbcType="INTEGER" />
+    <result column="consult_man_id" property="consultManId" jdbcType="INTEGER" />
+    <result column="consult_statu" property="consultStatu" jdbcType="CHAR" />
+    <result column="consult_date" property="consultDate" jdbcType="DATE" />
+    <result column="result" property="result" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, c_id, consult_man_id, consult_statu, consult_date, result
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from consult_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from consult_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lwz.entity.ConsultRecord" >
+    insert into consult_record (id, c_id, consult_man_id, 
+      consult_statu, consult_date, result
+      )
+    values (#{id,jdbcType=INTEGER}, #{cId,jdbcType=INTEGER}, #{consultManId,jdbcType=INTEGER}, 
+      #{consultStatu,jdbcType=CHAR}, #{consultDate,jdbcType=DATE}, #{result,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lwz.entity.ConsultRecord" >
+    insert into consult_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cId != null" >
+        c_id,
+      </if>
+      <if test="consultManId != null" >
+        consult_man_id,
+      </if>
+      <if test="consultStatu != null" >
+        consult_statu,
+      </if>
+      <if test="consultDate != null" >
+        consult_date,
+      </if>
+      <if test="result != null" >
+        result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cId != null" >
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="consultManId != null" >
+        #{consultManId,jdbcType=INTEGER},
+      </if>
+      <if test="consultStatu != null" >
+        #{consultStatu,jdbcType=CHAR},
+      </if>
+      <if test="consultDate != null" >
+        #{consultDate,jdbcType=DATE},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lwz.entity.ConsultRecord" >
+    update consult_record
+    <set >
+      <if test="cId != null" >
+        c_id = #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="consultManId != null" >
+        consult_man_id = #{consultManId,jdbcType=INTEGER},
+      </if>
+      <if test="consultStatu != null" >
+        consult_statu = #{consultStatu,jdbcType=CHAR},
+      </if>
+      <if test="consultDate != null" >
+        consult_date = #{consultDate,jdbcType=DATE},
+      </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lwz.entity.ConsultRecord" >
+    update consult_record
+    set c_id = #{cId,jdbcType=INTEGER},
+      consult_man_id = #{consultManId,jdbcType=INTEGER},
+      consult_statu = #{consultStatu,jdbcType=CHAR},
+      consult_date = #{consultDate,jdbcType=DATE},
+      result = #{result,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

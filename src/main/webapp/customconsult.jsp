@@ -1,5 +1,5 @@
 
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -11,12 +11,12 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <body>
 	<h1 style="text-align: center">客户咨询管理</h1>
-	<c:if test="${user.jobInfoId==4 }">
+	<c:if test="${user.jobId==4 }">
 	<div style="margin-left: 20px;margin-bottom: 40px">
 		<div style="width: 400px;margin-bottom: 20px">
 			<span style="font-size: 18;font-weight: bold;margin-right: 20px">选择部门员工:</span><input id="emps-consult"
 				class="easyui-combobox" panelHeight="auto" editable="false" 
-				data-options="valueField:'id',textField:'realname',url:'empForJobId.do?jobInfoId=3',onLoadSuccess:function(){
+				data-options="valueField:'id',textField:'realname',url:'empForJobId.do?jobinfoId=3',onLoadSuccess:function(){
 		var data = $('#emps-consult').combobox('getData');
 		$('#emps-consult').combobox('select',data[0].id);
 	},
@@ -77,7 +77,7 @@
 	</div>
 	
 	<input type="hidden" id="csltId" value="${user.id}"/>
-	<input type="hidden" id="jobid" value="${user.jobInfoId}"> 
+	<input type="hidden" id="jobid" value="${user.jobinfoId}"> 
 	
 	<script type="text/javascript">
 		$(function() {

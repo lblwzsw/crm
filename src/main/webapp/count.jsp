@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -56,7 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	
 	<input type="hidden" id="myid" value="${user.id}"/>
-	<input type="hidden" id="myjob" value="${user.jobInfoId}"> 
+	<input type="hidden" id="myjob" value="${user.jobinfoId}"> 
 	
 	
 	
@@ -65,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript">
 	
 		function showMyCount(){
-			var jid=${user.jobInfoId};
+			var jid=${user.jobinfoId};
 			
 			var id=${user.id};
 			

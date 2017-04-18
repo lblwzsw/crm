@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -10,7 +10,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <body>
 	<h1 style="text-align: center">客户管理</h1>
-	<c:if test="${user.jobInfoId==5 }">
+	<c:if test="${user.jobinfoId==5 }">
 	<div style="margin: 20px 20px;width: 400px">
 		<span style="font-size: 18;font-weight: bold;">添加客户：</span><a href="javascript:void(0)"
 			class="easyui-linkbutton" iconCls="icon-add"
@@ -20,7 +20,7 @@
 	</div>
 	</c:if>
 	
-	<c:if test="${user.jobInfoId==7 }">
+	<c:if test="${user.jobinfoId==7 }">
 	<div style="margin: 20px 20px;width: 400px">
 		<span style="font-size: 18;font-weight: bold;">添加客户：</span><a href="javascript:void(0)"
 			class="easyui-linkbutton" iconCls="icon-add"

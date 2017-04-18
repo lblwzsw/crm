@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -8,7 +8,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <body>
 	<h1 style="text-align: center">客户开发</h1>
-	<c:if test="${user.jobInfoId==9}">
+	<c:if test="${user.jobinfoId==9}">
 		<div style="margin: 20px 20px;width: 400px">
 			<span style="font-size: 18;font-weight: bold;">选择部门员工：</span><input id="emps-TMK"
 				 panelHeight="auto" editable="false"
@@ -25,7 +25,7 @@
 				style="width: 100px" />
 		</div>
 	</c:if>
-	<c:if test="${user.jobInfoId==6}">
+	<c:if test="${user.jobinfoId==6}">
 		<div style="margin: 20px 20px;width: 400px">
 			<span style="font-size: 18;font-weight: bold;">选择部门员工：</span><input id="emps-TMK"
 				 panelHeight="auto" editable="false"
@@ -81,7 +81,7 @@
 		<div id="showMark" style="margin: 20px"></div>
 	</div>
 	<input type="hidden" id="flmId" value="${user.id}"/>
-	<input type="hidden" id="jbid" value="${user.jobInfoId}"> 
+	<input type="hidden" id="jbid" value="${user.jobinfoId}"> 
 	<input type="hidden" id="dptid" value="${user.departmentId}"> 
 	
 	
@@ -137,11 +137,11 @@
 			
 			if($("#dptid").val()==2&&$("#jbid").val()==9){
 				$("#emps-TMK").combobox({
-					url:'empForJobId.do?jobInfoId=8'
+					url:'empForJobId.do?jobinfoId=8'
 				})
 			}else if($("#dptid").val()==3&&$("#jbid").val()==6){
 				$("#emps-TMK").combobox({
-					url:'empForJobId.do?jobInfoId=5'
+					url:'empForJobId.do?jobinfoId=5'
 				})
 			}
 			

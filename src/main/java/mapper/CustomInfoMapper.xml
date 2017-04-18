@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lwz.dao.CustomInfoDao" >
+  <resultMap id="BaseResultMap" type="com.lwz.entity.CustomInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="c_id" property="cId" jdbcType="INTEGER" />
+    <result column="follow_man_id" property="followManId" jdbcType="INTEGER" />
+    <result column="statu" property="statu" jdbcType="CHAR" />
+    <result column="start_date" property="startDate" jdbcType="DATE" />
+    <result column="last_follow_date" property="lastFollowDate" jdbcType="DATE" />
+    <result column="plan_date" property="planDate" jdbcType="DATE" />
+    <result column="mark" property="mark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, c_id, follow_man_id, statu, start_date, last_follow_date, plan_date, mark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from custom_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from custom_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lwz.entity.CustomInfo" >
+    insert into custom_info (id, c_id, follow_man_id, 
+      statu, start_date, last_follow_date, 
+      plan_date, mark)
+    values (#{id,jdbcType=INTEGER}, #{cId,jdbcType=INTEGER}, #{followManId,jdbcType=INTEGER}, 
+      #{statu,jdbcType=CHAR}, #{startDate,jdbcType=DATE}, #{lastFollowDate,jdbcType=DATE}, 
+      #{planDate,jdbcType=DATE}, #{mark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lwz.entity.CustomInfo" >
+    insert into custom_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cId != null" >
+        c_id,
+      </if>
+      <if test="followManId != null" >
+        follow_man_id,
+      </if>
+      <if test="statu != null" >
+        statu,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="lastFollowDate != null" >
+        last_follow_date,
+      </if>
+      <if test="planDate != null" >
+        plan_date,
+      </if>
+      <if test="mark != null" >
+        mark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cId != null" >
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="followManId != null" >
+        #{followManId,jdbcType=INTEGER},
+      </if>
+      <if test="statu != null" >
+        #{statu,jdbcType=CHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="lastFollowDate != null" >
+        #{lastFollowDate,jdbcType=DATE},
+      </if>
+      <if test="planDate != null" >
+        #{planDate,jdbcType=DATE},
+      </if>
+      <if test="mark != null" >
+        #{mark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lwz.entity.CustomInfo" >
+    update custom_info
+    <set >
+      <if test="cId != null" >
+        c_id = #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="followManId != null" >
+        follow_man_id = #{followManId,jdbcType=INTEGER},
+      </if>
+      <if test="statu != null" >
+        statu = #{statu,jdbcType=CHAR},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="lastFollowDate != null" >
+        last_follow_date = #{lastFollowDate,jdbcType=DATE},
+      </if>
+      <if test="planDate != null" >
+        plan_date = #{planDate,jdbcType=DATE},
+      </if>
+      <if test="mark != null" >
+        mark = #{mark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lwz.entity.CustomInfo" >
+    update custom_info
+    set c_id = #{cId,jdbcType=INTEGER},
+      follow_man_id = #{followManId,jdbcType=INTEGER},
+      statu = #{statu,jdbcType=CHAR},
+      start_date = #{startDate,jdbcType=DATE},
+      last_follow_date = #{lastFollowDate,jdbcType=DATE},
+      plan_date = #{planDate,jdbcType=DATE},
+      mark = #{mark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

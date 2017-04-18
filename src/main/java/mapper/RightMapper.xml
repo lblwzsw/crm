@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lwz.dao.RightDao" >
+  <resultMap id="BaseResultMap" type="com.lwz.entity.Right" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="r_name" property="rName" jdbcType="CHAR" />
+    <result column="r_type" property="rType" jdbcType="CHAR" />
+    <result column="url" property="url" jdbcType="CHAR" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, r_name, r_type, url, pid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from right
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from right
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lwz.entity.Right" >
+    insert into right (id, r_name, r_type, url, 
+      pid)
+    values (#{id,jdbcType=INTEGER}, #{rName,jdbcType=CHAR}, #{rType,jdbcType=CHAR}, #{url,jdbcType=CHAR}, 
+      #{pid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lwz.entity.Right" >
+    insert into right
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="rName != null" >
+        r_name,
+      </if>
+      <if test="rType != null" >
+        r_type,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="rName != null" >
+        #{rName,jdbcType=CHAR},
+      </if>
+      <if test="rType != null" >
+        #{rType,jdbcType=CHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=CHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lwz.entity.Right" >
+    update right
+    <set >
+      <if test="rName != null" >
+        r_name = #{rName,jdbcType=CHAR},
+      </if>
+      <if test="rType != null" >
+        r_type = #{rType,jdbcType=CHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=CHAR},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lwz.entity.Right" >
+    update right
+    set r_name = #{rName,jdbcType=CHAR},
+      r_type = #{rType,jdbcType=CHAR},
+      url = #{url,jdbcType=CHAR},
+      pid = #{pid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByRIds" parameterType="java.util.List" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" /> from t_right where
+  	<foreach collection="rIds" item="r">
+  		id = #{r} or
+  	</foreach>
+  	1=0
+  </select>
+</mapper>

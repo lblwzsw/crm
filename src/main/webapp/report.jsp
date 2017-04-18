@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <h1 style="text-align: center">报表管理</h1>
     
     
-    <c:if test="${user.jobInfoId!=1 }">
+    <c:if test="${user.jobinfoId!=1 }">
     <div style="margin: 20px 20px;width: 400px">
 		<span style="font-size: 18;font-weight: bold;">请选择报表类型：</span> <select 
 			class="easyui-combobox" id="outType" style="width:120px;height: 32px" editable="false" panelHeight="auto">
@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
     </c:if>	
     
-    <c:if test="${user.jobInfoId==1 }">
+    <c:if test="${user.jobinfoId==1 }">
     <div style="margin: 20px 20px;width: 600px">
     <span style="font-size: 18;font-weight: bold;">功能导航:</span>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-man" plain="false"
@@ -100,7 +100,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     
     
-    <input type="hidden"  id="jobId" value="${user.jobInfoId }">
+    <input type="hidden"  id="jobId" value="${user.jobinfoId }">
     <input type="hidden" id="uid" value="${user.id }">
    
     
