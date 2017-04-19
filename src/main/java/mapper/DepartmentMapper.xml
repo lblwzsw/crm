@@ -55,4 +55,7 @@
     set dname = #{dname,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="getDepartments" resultMap="BaseResultMap">
+  	select id,dname from department
+  </select>
 </mapper>

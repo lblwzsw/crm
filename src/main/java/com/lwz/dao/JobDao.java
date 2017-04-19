@@ -1,5 +1,7 @@
 package com.lwz.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.lwz.entity.Job;
@@ -17,4 +19,6 @@ public interface JobDao {
     int updateByPrimaryKeySelective(Job record);
 
     int updateByPrimaryKey(Job record);
+    
+    List<Job> getJobsByDid(Integer dId);
 }

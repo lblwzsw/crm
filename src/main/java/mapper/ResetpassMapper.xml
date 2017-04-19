@@ -68,4 +68,10 @@
       phone_no = #{phoneNo,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="querRestRequest" resultMap="BaseResultMap">
+  	select id, username, phone_no from resetpass
+  </select>
+  <delete id="deleteById">
+  	delete from resetpass where id=#{id}
+  </delete>
 </mapper>

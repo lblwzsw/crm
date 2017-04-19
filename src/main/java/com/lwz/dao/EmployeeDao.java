@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.lwz.entity.Employee;
+import com.lwz.entity.Resetpass;
 
 @Repository
 public interface EmployeeDao {
@@ -20,4 +21,8 @@ public interface EmployeeDao {
     int updateByPrimaryKey(Employee record);
     
     Employee selectByUsername(@Param("username")String username, @Param("pass")String pass);
+    
+    int checkUsername(String username);
+    
+    int resetPassByUsername(@Param("username")String username, @Param("pass")String pass);
 }

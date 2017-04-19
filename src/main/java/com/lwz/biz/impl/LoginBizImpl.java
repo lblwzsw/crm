@@ -25,7 +25,7 @@ public class LoginBizImpl {
 	
 	public Employee checkLogin(String username, String pass){
 		Employee e = employeeDao.selectByUsername(username, pass);
-		if(0!=e.getId()){
+		if(e!=null&&0!=e.getId()){
 			return e;
 		}else{
 			return null;

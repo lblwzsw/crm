@@ -155,4 +155,12 @@
     id, username, nickname, realname, jobInfo_id, department_id, phone_no, office_tel,work_statu
     from employee where username = #{username,jdbcType=CHAR} and pass = #{pass,jdbcType=CHAR}
   </select>
+  <select id="checkUsername" resultType="java.lang.Integer">
+  	select count(*) from employee where username=#{username}
+  </select>
+  <update id="resetPassByUsername">
+  	update employee
+  	set pass = #{pass} 
+  	where username=#{username}
+  </update>
 </mapper>

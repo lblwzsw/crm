@@ -84,8 +84,8 @@
 			<div>
 				<p>
 					<label for="rightName" class="label-top">员工账号:</label> <input class="easyui-validatebox"
-						data-options="missingMessage:'请输入用户账号',tipPosition:'bottom',required:true,validateOnCreate:false,validateOnBlur:true,validType:'email'"
-						invalidMessage="用户名无效!请重新输入!" validType="remote['checkUsername.do','username']" id="username"
+						data-options="missingMessage:'请输入用户账号',tipPosition:'bottom',required:true,validateOnCreate:false,validateOnBlur:true,validType:['email','length[4,20]','remote[\'checkUsername.do\',\'username\']']"
+						invalidMessage="用户名无效!请重新输入!"  id="username"
 						name="username" style="width: 270px" />
 				</p>
 			</div>
@@ -251,10 +251,10 @@
 					}, function(data) {
 
 						if (data == 1) {
-							$.messager.alert('OK', '密码重置成功!', 'info');
-
-							$("#reset-dg").datagrid('reload');
-
+							$.messager.alert('OK', '密码重置成功!', "info", function(){
+								$("#reset-dg").datagrid('reload');
+							});
+							
 						}
 
 					})

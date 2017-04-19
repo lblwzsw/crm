@@ -66,4 +66,7 @@
       d_id = #{dId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="getJobsByDid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select id, job, d_id from job where d_id = #{dId}
+  </select>
 </mapper>

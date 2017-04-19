@@ -1,5 +1,7 @@
 package com.lwz.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.lwz.entity.Resetpass;
@@ -17,4 +19,8 @@ public interface ResetpassDao {
     int updateByPrimaryKeySelective(Resetpass record);
 
     int updateByPrimaryKey(Resetpass record);
+    
+    List<Resetpass> querRestRequest();
+    
+    int deleteById(Integer id);
 }

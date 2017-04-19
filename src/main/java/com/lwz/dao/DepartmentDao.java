@@ -1,5 +1,7 @@
 package com.lwz.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.lwz.entity.Department;
@@ -17,4 +19,6 @@ public interface DepartmentDao {
     int updateByPrimaryKeySelective(Department record);
 
     int updateByPrimaryKey(Department record);
+    
+    List<Department> getDepartments();
 }
