@@ -136,4 +136,7 @@
       invite_name = #{inviteName,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="queryAllCustom" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" /> from custom
+  </select>
 </mapper>

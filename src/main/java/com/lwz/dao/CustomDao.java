@@ -1,5 +1,7 @@
 package com.lwz.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.lwz.entity.Custom;
@@ -17,4 +19,6 @@ public interface CustomDao {
     int updateByPrimaryKeySelective(Custom record);
 
     int updateByPrimaryKey(Custom record);
+    
+    List<Custom> queryAllCustom();
 }

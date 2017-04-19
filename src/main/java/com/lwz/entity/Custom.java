@@ -21,7 +21,17 @@ public class Custom {
 
     private String inviteName;
 
-    public Integer getId() {
+    private CustomInfo customInfo;
+    
+    public CustomInfo getCustomInfo() {
+		return customInfo;
+	}
+
+	public void setCustomInfo(CustomInfo customInfo) {
+		this.customInfo = customInfo;
+	}
+
+	public Integer getId() {
         return id;
     }
 
