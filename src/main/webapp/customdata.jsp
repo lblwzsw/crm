@@ -373,7 +373,7 @@
 				$('#consult-ff').form('submit', {
 					url : 'allotToConsult.do',
 					onSubmit : function(param) {
-						param.customId = row.id;
+						param.cId = row.id;
 					},
 					success : function(data) {
 						if (data == 1) {

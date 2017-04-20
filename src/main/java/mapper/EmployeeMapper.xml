@@ -163,4 +163,10 @@
   	set pass = #{pass} 
   	where username=#{username}
   </update>
+  <select id="queryAllConsulters" resultType="java.util.HashMap">
+  	select id,realname from employee where jobinfo_id=3
+  </select>
+  <select id="queryAllEMT" resultType="java.lang.Integer">
+  select id from employee where jobinfo_id=8
+  </select>
 </mapper>

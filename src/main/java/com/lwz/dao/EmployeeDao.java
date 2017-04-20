@@ -1,5 +1,8 @@
 package com.lwz.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -25,4 +28,8 @@ public interface EmployeeDao {
     int checkUsername(String username);
     
     int resetPassByUsername(@Param("username")String username, @Param("pass")String pass);
+    
+    List<Map<String,Object>> queryAllConsulters();
+    
+    List<Integer> queryAllEMT();
 }

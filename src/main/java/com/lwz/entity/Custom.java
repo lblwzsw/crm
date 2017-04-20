@@ -2,6 +2,10 @@ package com.lwz.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Custom {
     private Integer id;
 
@@ -17,19 +21,12 @@ public class Custom {
 
     private String customStatu;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")  
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date createDate;
 
     private String inviteName;
 
-    private CustomInfo customInfo;
-    
-    public CustomInfo getCustomInfo() {
-		return customInfo;
-	}
-
-	public void setCustomInfo(CustomInfo customInfo) {
-		this.customInfo = customInfo;
-	}
 
 	public Integer getId() {
         return id;

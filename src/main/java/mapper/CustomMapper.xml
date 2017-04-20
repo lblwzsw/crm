@@ -137,6 +137,34 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="queryAllCustom" resultMap="BaseResultMap">
-  	select <include refid="Base_Column_List" /> from custom
+  	select <include refid="Base_Column_List" /> from custom 
+  	<where>
+	  	<if test="custom.name != null" >
+	    name like #{custom.name,jdbcType=CHAR}  and
+	    </if>
+	    <if test="custom.customStatu != null" >
+	    custom_statu like #{custom.customStatu,jdbcType=CHAR} and
+	    </if>
+	    <if test="custom.inviteName != null" >
+	    invite_name like #{custom.inviteName,jdbcType=CHAR} and
+	    </if>
+	    <if test="custom.phoneNo != null" >
+	    phone_no like #{custom.phoneNo,jdbcType=CHAR} and
+	    </if>
+	    <if test="custom.createDate != null" >
+	    create_date = #{custom.createDate,jdbcType=DATE} and
+	    </if>
+	    1=1
+  	</where>
+  	limit #{start} , #{rows} 
   </select>
+  <select id="queryCount" resultType="java.lang.Integer">
+  	select count(*) from custom
+  </select>
+  <select id="queryAllCustomForEMT" resultType="java.lang.Integer">
+  	select id from custom where custom_statu='0'
+  </select>
+  <update id="UpdateCustomState">
+  	update custom set custom_statu='2' where custom_statu='0'
+  </update>
 </mapper>

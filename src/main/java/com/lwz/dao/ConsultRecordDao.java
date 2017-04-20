@@ -1,5 +1,8 @@
 package com.lwz.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.lwz.entity.ConsultRecord;
@@ -17,4 +20,6 @@ public interface ConsultRecordDao {
     int updateByPrimaryKeySelective(ConsultRecord record);
 
     int updateByPrimaryKey(ConsultRecord record);
+    
+    List<ConsultRecord> selectByConsultManId(Integer consultManId);
 }

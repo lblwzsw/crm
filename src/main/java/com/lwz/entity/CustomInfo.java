@@ -2,6 +2,10 @@ package com.lwz.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class CustomInfo {
     private Integer id;
 
@@ -11,10 +15,16 @@ public class CustomInfo {
 
     private String statu;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")  
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date startDate;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")  
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date lastFollowDate;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")  
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date planDate;
 
     private String mark;

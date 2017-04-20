@@ -3,6 +3,9 @@ package com.lwz.entity;
 import java.util.Date;
 
 import org.apache.ibatis.type.Alias;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Alias("value=consult_record")
 public class ConsultRecord {
@@ -14,6 +17,8 @@ public class ConsultRecord {
 
     private String consultStatu;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")  
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date consultDate;
 
     private String result;
@@ -65,4 +70,11 @@ public class ConsultRecord {
     public void setResult(String result) {
         this.result = result;
     }
+
+	@Override
+	public String toString() {
+		return "ConsultRecord [id=" + id + ", cId=" + cId + ", consultManId=" + consultManId + ", consultStatu="
+		        + consultStatu + ", consultDate=" + consultDate + ", result=" + result + "]";
+	}
+    
 }
