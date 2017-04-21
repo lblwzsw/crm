@@ -16,16 +16,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lwz.biz.impl.CustomdateBizImpl;
+import com.lwz.biz.impl.CustomDateBizImpl;
 import com.lwz.entity.ConsultRecord;
 import com.lwz.entity.Custom;
 import com.lwz.entity.Department;
 
 @Controller
-public class CustomdateController {
+public class CustomDateController {
 	
 	@Resource
-	private CustomdateBizImpl customdateBiz;
+	private CustomDateBizImpl customdateBiz;
 	
 	@RequestMapping(value="insertCustom")
 	public @ResponseBody String insertCustom(Custom custom){

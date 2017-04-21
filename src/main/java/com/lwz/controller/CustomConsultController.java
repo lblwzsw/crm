@@ -1,5 +1,10 @@
 package com.lwz.controller;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -18,15 +23,25 @@ public class CustomConsultController {
 	private CustomConsultBizImpl customConsultBiz;
 	
 	@RequestMapping(value="queryRecord", produces="application/json;charset=utf-8")
-	public @ResponseBody String queryRecord(Integer consultManId){
+	public @ResponseBody String queryRecord(Integer consultManId, String customName, String customPhoneNo, Date consultDate, Date endDate){
+		
+		//customName,customPhoneNo,consultDate/endDate,consultManId
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("consultManId",consultManId);
+		map.put("customName",customName);
+		map.put("customPhoneNo",customPhoneNo);
+		map.put("consultDate",consultDate);
+		map.put("endDate",endDate);
+		List<Map<String,Object>> recordList = customConsultBiz.queryRecord(map);
 		
 		ObjectMapper oMapper = new ObjectMapper();
 		String json = "";
 		try {
-			json = oMapper.writeValueAsString(null);
+			json = oMapper.writeValueAsString(recordList);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
 		return json;
 	}
+	
 }

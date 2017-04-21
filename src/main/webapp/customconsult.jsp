@@ -11,7 +11,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <body>
 	<h1 style="text-align: center">客户咨询管理</h1>
-	<c:if test="${user.id==4 }">
+	<c:if test="${user.jobinfoId==4 }">
 	<div style="margin-left: 20px;margin-bottom: 40px">
 		<div style="width: 400px;margin-bottom: 20px">
 			<span style="font-size: 18;font-weight: bold;margin-right: 20px">选择部门员工:</span><input id="emps-consult"
@@ -243,7 +243,6 @@
 				newtext += "<li>" + texts[i] + "</li>"
 			}
 
-			alert(newtext)
 			$("#showResult").html("")
 			$("#showResult").append(newtext)
 

@@ -11,6 +11,18 @@
     <result column="plan_date" property="planDate" jdbcType="DATE" />
     <result column="mark" property="mark" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="SRC_TODAY">
+  	start_date = curdate()
+  </sql>
+  <sql id="SRC_HISTORY">
+  	start_date &lt; date_add(curdate(),interval -day(curdate()) + 1 day)
+  </sql>
+  <sql id="SRC_TODAY_PLAN">
+  	plan_date = curdate()
+  </sql>
+  <sql id="SRC_MONTH">
+  	start_date &gt;= date_add(curdate(),interval -day(curdate())+1 day)
+  </sql>
   <sql id="Base_Column_List" >
     id, c_id, follow_man_id, statu, start_date, last_follow_date, plan_date, mark
   </sql>
@@ -125,4 +137,23 @@
       mark = #{mark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="customInfo" resultType="java.util.HashMap">
+  	select ci.id id, ci.c_id customId, c.name customName, c.phone_no customPhoneNo, ci.statu statu, ci.start_date startDate, ci.plan_date planDate, ci.last_follow_date lastFollowDate, ci.mark mark from custom_info ci,custom c
+  	<where>
+	ci.c_id = c.id
+	<if test="src == 0">
+		and <include refid="SRC_TODAY" />
+	</if>
+	<if test="src == 1">
+		and <include refid="SRC_TODAY_PLAN" />
+	</if>
+	<if test="src == 2">
+		and <include refid="SRC_TODAY_PLAN" />
+	</if>
+	<if test="src == 3">
+		and <include refid="SRC_MONTH" />
+	</if>
+	and follow_man_id = #{followManId}
+  	</where>
+  </select>
 </mapper>

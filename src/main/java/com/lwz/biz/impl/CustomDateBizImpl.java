@@ -22,7 +22,7 @@ import com.lwz.entity.Custom;
 import com.lwz.entity.CustomInfo;
 
 @Service
-public class CustomdateBizImpl {
+public class CustomDateBizImpl {
 	
 	@Resource
 	private EmployeeDao employeeDao; 

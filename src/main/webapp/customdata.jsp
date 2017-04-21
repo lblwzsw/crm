@@ -14,7 +14,7 @@
 	<div style="margin: 20px 20px;width: 400px">
 		<span style="font-size: 18;font-weight: bold;">添加客户：</span><a href="javascript:void(0)"
 			class="easyui-linkbutton" iconCls="icon-add"
-			onclick="javascript:$('#cm-dlg').dialog('open').dialog('center').dialog('setTitle','添加权限');"
+			onclick="javascript:$('#cm-dlg').dialog('open').dialog('center').dialog('setTitle','添加客户');"
 			style="height: 32px">新增单个客户</a> 
 			
 	</div>

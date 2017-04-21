@@ -9,7 +9,7 @@
     <result column="consult_date" property="consultDate" jdbcType="DATE" />
     <result column="result" property="result" jdbcType="VARCHAR" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     id, c_id, consult_man_id, consult_statu, consult_date, result
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -103,7 +103,23 @@
       result = #{result,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectByConsultManId" resultMap="BaseResultMap">
-  	select <include refid="Base_Column_List" /> from consult_record where consult_man_id=#{consultManId} limit 
+  <select id="selectByConsultManId" resultType="java.util.HashMap" parameterType="java.util.Map">
+  	select cr.id id, cr.c_id customId, c.name customName, c.phone_no customPhoneNo, cr.consult_statu consultStatu, cr.consult_date consultDate, cr.result result from consult_record cr,custom c
+	<where>
+		cr.c_id=c.id
+		<if test="customName != null" >
+        and c.name like #{customName}
+      	</if>
+      	<if test="customPhoneNo != null" >
+        and c.phone_no like #{customPhoneNo}
+      	</if>
+      	<if test="consultDate != null" >
+        and cr.consult_date between #{consultDate,jdbcType=DATE} and #{endDate,jdbcType=DATE}
+      	</if>
+      	and cr.consult_man_id = #{consultManId}
+	</where>
   </select>
+  <update id="updateRecord">
+  	update consult_record set consult_statu=#{consultStatu} where id=#{id}
+  </update>
 </mapper>

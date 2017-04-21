@@ -1,5 +1,9 @@
 package com.lwz.dao;
 
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.lwz.entity.CustomInfo;
@@ -17,4 +21,7 @@ public interface CustomInfoDao {
     int updateByPrimaryKeySelective(CustomInfo record);
 
     int updateByPrimaryKey(CustomInfo record);
+    
+    List<Map<String,Object>> customInfo(@Param("src")Integer src, @Param("followManId")Integer followManId);
+    
 }
