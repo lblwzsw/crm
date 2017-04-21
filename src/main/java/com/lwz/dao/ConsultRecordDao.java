@@ -25,4 +25,6 @@ public interface ConsultRecordDao {
     List<Map<String,Object>> selectByConsultManId(Map<String,Object> map);
     
     int updateRecord(@Param("id")Integer id, @Param("consultStatu")String consultStatu);
+    
+    int queryCount(Map<String,Object> map);
 }

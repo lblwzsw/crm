@@ -18,8 +18,16 @@ public class CustomConsultBizImpl {
 	@Resource
 	private ConsultRecordDao consultRecordDao;
 	
-	public List<Map<String,Object>> queryRecord(Map<String,Object> map){
-		return consultRecordDao.selectByConsultManId(map);
+	public Map<String,Object> queryRecord(Integer page, Integer rows,Map<String,Object> map){
+		Map<String,Object> rmap = new HashMap<String,Object>();
+		Integer total = consultRecordDao.queryCount(map);
+		Integer start = rows * (page-1);
+		map.put("start", start);
+		map.put("rows",page);
+		List<Map<String, Object>> list = consultRecordDao.selectByConsultManId(map);
+		rmap.put("rows", list);
+		rmap.put("total", total);
+		return rmap;
 	}
 	
 	public int updateRecord(Integer id, String consultStatu){

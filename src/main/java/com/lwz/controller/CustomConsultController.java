@@ -23,7 +23,7 @@ public class CustomConsultController {
 	private CustomConsultBizImpl customConsultBiz;
 	
 	@RequestMapping(value="queryRecord", produces="application/json;charset=utf-8")
-	public @ResponseBody String queryRecord(Integer consultManId, String customName, String customPhoneNo, Date consultDate, Date endDate){
+	public @ResponseBody String queryRecord(Integer page, Integer rows,Integer consultManId, String customName, String customPhoneNo, Date consultDate, Date endDate){
 		
 		//customName,customPhoneNo,consultDate/endDate,consultManId
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -32,12 +32,12 @@ public class CustomConsultController {
 		map.put("customPhoneNo",customPhoneNo);
 		map.put("consultDate",consultDate);
 		map.put("endDate",endDate);
-		List<Map<String,Object>> recordList = customConsultBiz.queryRecord(map);
+		Map<String,Object> rmap = customConsultBiz.queryRecord(page, rows, map);
 		
 		ObjectMapper oMapper = new ObjectMapper();
 		String json = "";
 		try {
-			json = oMapper.writeValueAsString(recordList);
+			json = oMapper.writeValueAsString(rmap);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
