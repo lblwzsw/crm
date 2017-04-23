@@ -44,4 +44,8 @@ public class CustomDevController {
 		}
 		return "0";
 	}
+	@RequestMapping(value="updateCustomInfo")
+	public void updateCustomInfo(CustomInfo customInfo){
+		cunstomDevBiz.updateCustomInfo(customInfo);
+	}
 }

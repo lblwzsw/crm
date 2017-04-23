@@ -68,7 +68,7 @@ public class CustomDateBizImpl {
 	public int allotCustom(){
 		List<Integer> cList = customDao.queryAllCustomForEMT();
 		List<Integer> eList = employeeDao.queryAllEMT();
-		customDao.UpdateCustomState();
+		customDao.UpdateCustomState("2");
 		List<CustomInfo> ciList = new LinkedList<CustomInfo>();
 		int ir = cList.size()/eList.size();
 		int jr = eList.size();

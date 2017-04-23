@@ -97,7 +97,7 @@
 						$.post('updateCustomInfo.do', {
 							id : row.id,
 							statu : row.statu,
-							customId : row.customId
+							cId : row.customId
 						}, function(data) {
 							$('#cf-dg').edatagrid('reload');
 						})
@@ -121,7 +121,7 @@
 								id : row.id,
 								statu : row.statu,
 								planDate : date,
-								customId : row.customId
+								cId : row.customId
 							}, function(data) {
 								$('#cf-dg').edatagrid('reload');
 							})

@@ -165,6 +165,6 @@
   	select id from custom where custom_statu='0'
   </select>
   <update id="UpdateCustomState">
-  	update custom set custom_statu='2' where custom_statu='0'
+  	update custom set custom_statu=#{customStatu} where custom_statu='0'
   </update>
 </mapper>

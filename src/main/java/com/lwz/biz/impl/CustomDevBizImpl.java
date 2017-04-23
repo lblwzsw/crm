@@ -7,7 +7,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.lwz.dao.CustomDao;
 import com.lwz.dao.CustomInfoDao;
+import com.lwz.entity.Custom;
 import com.lwz.entity.CustomInfo;
 
 @Service
@@ -20,6 +22,8 @@ public class CustomDevBizImpl {
 	
 	@Resource
 	private CustomInfoDao customInfoDao;
+	@Resource
+	private CustomDao customDao;
 	
 	public List<Map<String,Object>> customInfo(Integer src, Integer followManId){
 		return customInfoDao.customInfo(src, followManId);
@@ -27,5 +31,20 @@ public class CustomDevBizImpl {
 	
 	public int addMark(CustomInfo customInfo){
 		return customInfoDao.updateByPrimaryKeySelective(customInfo);
+	}
+	
+	public void updateCustomInfo(CustomInfo customInfo){
+		String statu = customInfo.getStatu();
+		Custom custom = new Custom();
+		custom.setId(customInfo.getcId());
+		if("3".equals(statu)){
+			//修改客户表状态->2
+			custom.setCustomStatu("2");
+		}else if("4".equals(statu) || "5".equals(statu)){
+			//修改客户状态->4
+			custom.setCustomStatu("4");
+		}
+		customDao.updateByPrimaryKeySelective(custom);
+		customInfoDao.updateByPrimaryKeySelective(customInfo);
 	}
 }

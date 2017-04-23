@@ -28,5 +28,6 @@ public interface CustomDao {
     
     List<Integer> queryAllCustomForEMT();
     
-    int UpdateCustomState();
+    int UpdateCustomState(String statu);
+    
 }
