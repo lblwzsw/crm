@@ -99,4 +99,12 @@ public class Custom {
     public void setInviteName(String inviteName) {
         this.inviteName = inviteName;
     }
+
+	@Override
+	public String toString() {
+		return "Custom [id=" + id + ", name=" + name + ", education=" + education + ", phoneNo=" + phoneNo + ", qq="
+		        + qq + ", email=" + email + ", customStatu=" + customStatu + ", createDate=" + createDate
+		        + ", inviteName=" + inviteName + "]";
+	}
+    
 }

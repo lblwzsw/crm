@@ -129,7 +129,6 @@
 			
 			
 			if (type == 'all') {
-				alert("搜索本月全部")
 
 				$("#cr-dg").edatagrid({
 					url : 'queryRecord.do?consultManId='+consultManId,

@@ -8,15 +8,20 @@ import javax.annotation.Resource;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lwz.dao.ConsultRecordDao;
+import com.lwz.dao.CustomDao;
 import com.lwz.entity.ConsultRecord;
+import com.lwz.entity.Custom;
 
 @Service
 public class CustomConsultBizImpl {
 
 	@Resource
 	private ConsultRecordDao consultRecordDao;
+	@Resource
+	private CustomDao customDao;
 	
 	public Map<String,Object> queryRecord(Integer page, Integer rows,Map<String,Object> map){
 		Map<String,Object> rmap = new HashMap<String,Object>();
@@ -30,7 +35,19 @@ public class CustomConsultBizImpl {
 		return rmap;
 	}
 	
-	public int updateRecord(Integer id, String consultStatu){
+	@Transactional
+	public int updateRecord(Integer id, Integer customId, String consultStatu){
+		Custom custom = new Custom();
+		custom.setId(customId);
+		if("2".equals(consultStatu)){
+			custom.setCustomStatu("5");
+		}else if("3".equals(consultStatu)){
+			custom.setCustomStatu("4");
+		}else if("4".equals(consultStatu)){
+			custom.setCustomStatu("3");
+		}
+		customDao.updateByPrimaryKeySelective(custom);
+		
 		return consultRecordDao.updateRecord(id, consultStatu);
 	}
 	

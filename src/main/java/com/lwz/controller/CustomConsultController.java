@@ -43,5 +43,8 @@ public class CustomConsultController {
 		}
 		return json;
 	}
-	
+	@RequestMapping(value="updateRecord")
+	public void updateRecord(Integer id, Integer customId, String consultStatu){
+		customConsultBiz.updateRecord(id,customId,consultStatu);
+	}
 }

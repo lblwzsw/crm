@@ -139,4 +139,13 @@
   <update id="updateRecord">
   	update consult_record set consult_statu=#{consultStatu} where id=#{id}
   </update>
+  <select id="queryCountCurrentMonth" resultType="java.util.HashMap">
+  	SELECT total,newAllot,following,signed,denied,refundment
+	FROM
+	(SELECT count(consult_statu) newAllot, sum(consult_statu='1') following, sum(consult_statu='2') signed, sum(consult_statu='3') denied, sum(consult_statu='4') refundment
+	FROM consult_record 
+	WHERE consult_man_id=#{consultManId} and consult_date>=date_add(curdate(),interval -day(curdate())+1 day)) t1
+	JOIN
+	(SELECT count(*) total FROM consult_record WHERE consult_man_id=#{consultManId}) t2
+  </select>
 </mapper>

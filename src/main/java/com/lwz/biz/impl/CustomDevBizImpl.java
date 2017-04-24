@@ -39,7 +39,7 @@ public class CustomDevBizImpl {
 		custom.setId(customInfo.getcId());
 		if("3".equals(statu)){
 			//修改客户表状态->2
-			custom.setCustomStatu("2");
+			custom.setCustomStatu("1");
 		}else if("4".equals(statu) || "5".equals(statu)){
 			//修改客户状态->4
 			custom.setCustomStatu("4");

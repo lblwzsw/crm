@@ -156,4 +156,13 @@
 	and follow_man_id = #{followManId}
   	</where>
   </select>
+  <select id="queryCountCurrentMonth" resultType="java.util.HashMap">
+  	SELECT total,newAllot,disConnect,following,visited,denied,invalid
+	FROM
+	(SELECT count(statu) newAllot, sum(statu='1') disConnect, sum(statu='2') following, sum(statu='3') visited, sum(statu='4') denied, sum(statu='5') invalid
+	FROM custom_info 
+	WHERE follow_man_id=#{followManId} and start_date>=date_add(curdate(),interval -day(curdate())+1 day)) t1
+	JOIN
+	(SELECT count(*) total FROM custom_info WHERE follow_man_id=#{followManId}) t2
+  </select>
 </mapper>

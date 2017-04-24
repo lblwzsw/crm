@@ -27,4 +27,6 @@ public interface ConsultRecordDao {
     int updateRecord(@Param("id")Integer id, @Param("consultStatu")String consultStatu);
     
     int queryCount(Map<String,Object> map);
+    
+    List<Map<String,Object>> queryCountCurrentMonth(Integer consultManId);
 }
