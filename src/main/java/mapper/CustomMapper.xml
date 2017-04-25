@@ -167,4 +167,14 @@
   <update id="UpdateCustomState">
   	update custom set custom_statu=#{customStatu} where custom_statu='0'
   </update>
+  <insert id="insertByList" parameterType="java.util.List">
+  	insert into custom (name, education, phone_no, qq, email, custom_statu, create_date, invite_name)
+  	values  
+    <foreach collection="list" item="item" index="index" separator="," >  
+        (#{item.name},#{item.education},#{item.phoneNo},#{item.qq},#{item.email},#{item.customStatu},#{item.createDate},#{item.inviteName})  
+    </foreach>
+  </insert>
+  <select id="queryAllCustomNoPage" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" /> from custom 
+  </select>
 </mapper>

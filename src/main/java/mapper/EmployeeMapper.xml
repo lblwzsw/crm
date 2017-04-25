@@ -172,4 +172,9 @@
   <select id="empForJobId" resultType="java.util.HashMap">
   	select id,realname from employee where jobinfo_id=#{jobinfoId}
   </select>
+  <select id="selectAllEmp" resultType="java.util.HashMap">
+  	select e.id id,e.realname realname,e.nickname nickname,d.dname dname,j.job job,e.phone_no phoneNo,e.office_tel officeTel
+  	from employee e,department d,job j
+  	where e.jobInfo_id=j.id and e.department_id=d.id and e.work_statu='1'
+  </select>
 </mapper>

@@ -99,4 +99,12 @@ public class CustomDateBizImpl {
 		
 		return flag;
 	}
+	public String batchImportCustom(List<Custom> list){
+		int rows = customDao.insertByList(list);
+		if(rows>=0){
+			return String.valueOf(rows);
+		}else{
+			return "false";
+		}
+	}
 }

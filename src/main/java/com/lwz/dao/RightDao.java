@@ -22,4 +22,6 @@ public interface RightDao {
     int updateByPrimaryKey(Right record);
     
     List<Right> selectByRIds(@Param("rIds")List<Integer> rIds);
+    
+    List<Right> queryAllRights();
 }

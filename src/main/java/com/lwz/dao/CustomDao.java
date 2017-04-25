@@ -30,4 +30,7 @@ public interface CustomDao {
     
     int UpdateCustomState(String statu);
     
+    int insertByList(List<Custom> list);
+    
+    List<Custom> queryAllCustomNoPage();
 }

@@ -119,9 +119,9 @@
 			fitColumns="true">
 		<thead>
 			<tr>
-				<th field="rid" width="100" align="center">权限编号</th>
-				<th field="rightName" width="150"  align="center" editor="type:'validatebox',options:{required:true}">权限名称</th>
-				<th field="rightType" width="100" align="center" 
+				<th field="id" width="100" align="center">权限编号</th>
+				<th field="rName" width="150"  align="center" editor="type:'validatebox',options:{required:true}">权限名称</th>
+				<th field="rType" width="100" align="center" 
 				formatter="format"   editor="{type:'combobox',options:{data:[{'rightType':'1','text':'一级权限'},{'rightType':'2','text':'二级权限'}],valueField:'rightType',textField:'text'}}">权限等级</th>
 				<th field="url" width="100"  align="center" editor="type:'validatebox',options:{required:true}" >url</th>
 				<th field="pid" width="100" align="center" editor="{type:'numberbox',options:{precision:0}}">所属权限</th>

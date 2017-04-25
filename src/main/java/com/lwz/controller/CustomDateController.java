@@ -3,6 +3,7 @@ package com.lwz.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -104,7 +105,7 @@ public class CustomDateController {
 	}
 	@Test
 	@RequestMapping(value="batchImportCustom")
-	public void batchImportCustom() throws IOException, ParseException{
+	public @ResponseBody String batchImportCustom() throws IOException, ParseException{
 		//MultipartFile file
 		File file = new File("E:\\Code\\rcm\\src\\main\\webapp\\excel\\客户.xls");
 		POIFSFileSystem fs = new POIFSFileSystem(new FileInputStream(file));
@@ -151,16 +152,37 @@ public class CustomDateController {
 			HSSFRow row = sheet.getRow(i);
 			Custom custom = new Custom();
 			custom.setName(row.getCell(nameCol).getStringCellValue());
-			custom.setEducation("1"/*row.getCell(educationCol).getStringCellValue()*/);
-			custom.setPhoneNo(String.valueOf(row.getCell(phoneNoCol).getNumericCellValue()));
-			custom.setQq(Integer.parseInt("1"/*row.getCell(qqCol).getStringCellValue()*/));
+			
+			String education = row.getCell(educationCol).getStringCellValue().trim();
+			if("本科".equals(education)){
+				custom.setEducation("1");
+			}else if("专科".equals(education)){
+				custom.setEducation("2");
+			}else if("高中".equals(education)){
+				custom.setEducation("3");
+			}else if("硕士".equals(education)){
+				custom.setEducation("4");
+			}
+			
+			double phoneNo = row.getCell(phoneNoCol).getNumericCellValue();   
+			custom.setPhoneNo(new DecimalFormat("#").format(phoneNo));
+			
+			double qq = row.getCell(qqCol).getNumericCellValue(); 
+			String qqStr = new DecimalFormat("#").format(qq);
+			if(qqStr.matches("^[1-9][0-9]+$")){
+				custom.setQq(Integer.valueOf(qqStr));
+			}
+			
 			custom.setEmail(row.getCell(emailCol).getStringCellValue());
-			custom.setCustomStatu(String.valueOf(row.getCell(customStatuCol).getNumericCellValue()));
+			
+			double customStatu = row.getCell(customStatuCol).getNumericCellValue();   
+			custom.setCustomStatu(new DecimalFormat("#").format(customStatu));
+			
 			custom.setCreateDate(new SimpleDateFormat("yyyy-MM-dd").parse(row.getCell(createDateCol).getStringCellValue()));
 			custom.setInviteName(row.getCell(inviteNameCol).getStringCellValue());
 			list.add(custom);
-			System.out.println(custom);
 		}
+		return customdateBiz.batchImportCustom(list);
 		
 	}
 }

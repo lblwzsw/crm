@@ -165,4 +165,9 @@
 	JOIN
 	(SELECT count(*) total FROM custom_info WHERE follow_man_id=#{followManId}) t2
   </select>
+  <select id="queryAllCountCurrentMonth" resultType="java.util.HashMap">
+	SELECT count(ci.statu) total, sum(ci.statu='1') disConnect, sum(ci.statu='2') following, sum(ci.statu='3') visited, sum(ci.statu='4') denied
+	FROM custom_info ci,employee e
+	WHERE ci.follow_man_id=e.id and e.department_id=#{departmentId} and start_date>=date_add(curdate(),interval -day(curdate())+1 day)
+  </select>
 </mapper>

@@ -148,4 +148,9 @@
 	JOIN
 	(SELECT count(*) total FROM consult_record WHERE consult_man_id=#{consultManId}) t2
   </select>
+  <select id="queryAllCountCurrentMonth" resultType="java.util.HashMap">
+	SELECT count(consult_statu) total, sum(consult_statu='1') following, sum(consult_statu='2') signed, sum(consult_statu='3') denied, sum(consult_statu='4') refundment
+	FROM consult_record 
+	WHERE consult_date>=date_add(curdate(),interval -day(curdate())+1 day)
+  </select>
 </mapper>

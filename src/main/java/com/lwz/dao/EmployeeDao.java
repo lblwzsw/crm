@@ -34,4 +34,6 @@ public interface EmployeeDao {
     List<Integer> queryAllEMT();
     
     List<Map<String,Object>> empForJobId(String jobinfoId);
+    
+    List<Map<String,Object>> selectAllEmp();
 }

@@ -29,4 +29,6 @@ public interface ConsultRecordDao {
     int queryCount(Map<String,Object> map);
     
     List<Map<String,Object>> queryCountCurrentMonth(Integer consultManId);
+    
+    List<Map<String,Object>> queryAllCountCurrentMonth();
 }
