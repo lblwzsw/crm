@@ -69,4 +69,7 @@
   <select id="getJobsByDid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
   	select id, job, d_id from job where d_id = #{dId}
   </select>
+  <select id="queryAllJobs" resultMap="BaseResultMap">
+  	select id, job, d_id from job
+  </select>
 </mapper>

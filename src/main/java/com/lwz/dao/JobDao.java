@@ -21,4 +21,6 @@ public interface JobDao {
     int updateByPrimaryKey(Job record);
     
     List<Job> getJobsByDid(Integer dId);
+    
+    List<Job> queryAllJobs();
 }

@@ -21,4 +21,6 @@ public interface JobRightDao {
     int updateByPrimaryKey(JobRight record);
     
     List<Integer> selectRIdByJId(int jId);
+    
+    List<JobRight> queryAllBind();
 }

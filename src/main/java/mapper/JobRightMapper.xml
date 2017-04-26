@@ -69,4 +69,8 @@
   <select id="selectRIdByJId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
   	select r_id from job_right where j_id = #{jId}
   </select>
+  <select id="queryAllBind" resultMap="BaseResultMap">
+  	select id, j_id, r_id from job_right
+  </select>
+  
 </mapper>

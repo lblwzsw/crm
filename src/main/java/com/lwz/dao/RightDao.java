@@ -24,4 +24,5 @@ public interface RightDao {
     List<Right> selectByRIds(@Param("rIds")List<Integer> rIds);
     
     List<Right> queryAllRights();
+    
 }

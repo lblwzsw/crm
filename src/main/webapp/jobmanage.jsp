@@ -72,11 +72,11 @@
 			<tr>
 				<th field="id" width="100" align="center">职位编号</th>
 				<th field="job" width="100"  align="center" editor="type:'validatebox',options:{required:true}">职位名称</th>
-				<th field="departmentId" width="100" align="center" 
-				formatter="format"   editor="{type:'combobox',options:{data:[{'departmentId':'1','text':'技术部'},
-				{'departmentId':'2','text':'销售部'},
-				{'departmentId':'3','text':'线上咨询部'},
-				{'departmentId':'4','text':'线下咨询部'},{'departmentId':'5','text':'销售支持部'}],valueField:'departmentId',textField:'text'}}">所属部门</th>
+				<th field="dId" width="100" align="center" 
+				formatter="format"   editor="{type:'combobox',options:{data:[{'dId':'1','text':'技术部'},
+				{'dId':'2','text':'销售部'},
+				{'dId':'3','text':'线上咨询部'},
+				{'dId':'4','text':'线下咨询部'},{'dId':'5','text':'销售支持部'}],valueField:'dId',textField:'text'}}">所属部门</th>
 				
 			</tr>
 		</thead>
