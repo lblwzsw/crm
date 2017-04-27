@@ -15,6 +15,13 @@
     <context:component-scan base-package="com.lwz" use-default-filters="false">
     	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
+    <mvc:interceptors>
+    	<mvc:interceptor>
+    		<mvc:mapping path="/*.do"/>
+    		<mvc:exclude-mapping path="/index.do"/>
+    		<bean class="com.lwz.interceptor.LoginInterceptor"></bean>
+    	</mvc:interceptor>
+    </mvc:interceptors>
     <mvc:annotation-driven />
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="UTF-8"></property>

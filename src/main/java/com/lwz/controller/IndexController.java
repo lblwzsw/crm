@@ -35,4 +35,8 @@ public class IndexController {
 			return "0";
 		}
 	}
+	@RequestMapping("index")
+	public String index(){
+		return "login";
+	}
 }
