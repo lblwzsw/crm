@@ -177,4 +177,7 @@
   	from employee e,department d,job j
   	where e.jobInfo_id=j.id and e.department_id=d.id and e.work_statu='1'
   </select>
+  <select id="empForDepart" resultType="java.util.HashMap">
+  	select id,realname,nickname,phone_no phoneNo,office_tel officeTel from employee where department_id=#{departmentId}
+  </select>
 </mapper>
