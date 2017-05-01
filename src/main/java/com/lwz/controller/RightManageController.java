@@ -59,4 +59,9 @@ public class RightManageController {
 		rightManageBiz.deleteBind(jobRight);
 		return "";
 	}
+	@RequestMapping(value="insertRight")
+	public @ResponseBody String insertRight(Right right){
+		right.setrType("2");
+		return rightManageBiz.insertRight(right);
+	}
 }

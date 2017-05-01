@@ -24,7 +24,7 @@ public interface CustomInfoDao {
     
     List<Map<String,Object>> customInfo(@Param("src")Integer src, @Param("followManId")Integer followManId);
     
-    List<Map<String,Object>> queryCountCurrentMonth(Integer followManId);
+    List<Map<String,Object>> selectForCountOnCurrentMonthByFId(Integer followManId);
     
     List<Map<String,Object>> queryAllCountCurrentMonth(Integer departmentId);
     

@@ -22,7 +22,7 @@ public class Custom {
     private String customStatu;
 
     @DateTimeFormat(pattern="yyyy-MM-dd")  
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     private Date createDate;
 
     private String inviteName;

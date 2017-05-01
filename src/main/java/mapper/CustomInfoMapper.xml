@@ -145,7 +145,7 @@
 		and <include refid="SRC_TODAY" />
 	</if>
 	<if test="src == 1">
-		and <include refid="SRC_TODAY_PLAN" />
+		and <include refid="SRC_HISTORY" />
 	</if>
 	<if test="src == 2">
 		and <include refid="SRC_TODAY_PLAN" />
@@ -156,7 +156,7 @@
 	and follow_man_id = #{followManId}
   	</where>
   </select>
-  <select id="queryCountCurrentMonth" resultType="java.util.HashMap">
+  <select id="selectForCountOnCurrentMonthByFId" resultType="java.util.HashMap">
 	SELECT count(statu) total, sum(statu='0') newAllot, sum(statu='1') disConnect, sum(statu='2') following, sum(statu='3') visited, sum(statu='4') denied, sum(statu='5') invalid
 	FROM custom_info 
 	WHERE follow_man_id=#{followManId} and start_date>=date_add(curdate(),interval -day(curdate())+1 day)
@@ -164,7 +164,7 @@
   <select id="queryAllCountCurrentMonth" resultType="java.util.HashMap">
 	SELECT count(ci.statu) total, sum(ci.statu='1') disConnect, sum(ci.statu='2') following, sum(ci.statu='3') visited, sum(ci.statu='4') denied
 	FROM custom_info ci,employee e
-	WHERE ci.follow_man_id=e.id and e.department_id=#{departmentId} and start_date>=date_add(curdate(),interval -day(curdate())+1 day)
+	WHERE ci.follow_man_id=e.id and e.department_id=#{departmentId} and ci.start_date>=date_add(curdate(),interval -day(curdate())+1 day)
   </select>
   <select id="countInfoForDepart" resultType="java.util.HashMap">
   	SELECT count(ci.statu) total,sum(ci.statu='0') newAllot, sum(ci.statu='1') disConnect, sum(ci.statu='2') following, sum(ci.statu='3') visited, sum(ci.statu='4') denied, sum(ci.statu='5') invalid

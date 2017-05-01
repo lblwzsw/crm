@@ -158,6 +158,9 @@
   <select id="checkUsername" resultType="java.lang.Integer">
   	select count(*) from employee where username=#{username}
   </select>
+  <select id="checkWorkStatu" resultType="java.lang.Integer">
+  	select count(*) from employee where username=#{username} and work_statu='1'
+  </select>
   <update id="resetPassByUsername">
   	update employee
   	set pass = #{pass} 
@@ -180,4 +183,9 @@
   <select id="empForDepart" resultType="java.util.HashMap">
   	select id,realname,nickname,phone_no phoneNo,office_tel officeTel from employee where department_id=#{departmentId}
   </select>
+  <update id="updateByUsername">
+  	update employee
+  	set work_statu = 0 
+  	where username = #{username}
+  </update>
 </mapper>

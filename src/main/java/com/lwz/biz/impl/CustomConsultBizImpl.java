@@ -29,7 +29,7 @@ public class CustomConsultBizImpl {
 		Integer start = rows * (page-1);
 		map.put("start", start);
 		map.put("rows",page);
-		List<Map<String, Object>> list = consultRecordDao.selectByConsultManId(map);
+		List<Map<String, Object>> list = consultRecordDao.selectByConsultManIdSelective(map);
 		rmap.put("rows", list);
 		rmap.put("total", total);
 		return rmap;
@@ -48,7 +48,7 @@ public class CustomConsultBizImpl {
 		}
 		customDao.updateByPrimaryKeySelective(custom);
 		
-		return consultRecordDao.updateRecord(id, consultStatu);
+		return consultRecordDao.updateStatu(id, consultStatu);
 	}
 	
 	public int addResult(ConsultRecord consultRecord){

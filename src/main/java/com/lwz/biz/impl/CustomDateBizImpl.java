@@ -39,7 +39,7 @@ public class CustomDateBizImpl {
 	
 	public Map<String,Object> queryCustom(Integer page, Integer rows, Custom custom){
 		Map<String,Object> map = new HashMap<String,Object>();
-		Integer total = customDao.queryCount();
+		Integer total = customDao.queryCount(custom);
 		Integer start = rows * (page-1);
 		List<Custom> list = customDao.queryAllCustom(start, rows, custom);
 		map.put("rows", list);

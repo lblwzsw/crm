@@ -103,6 +103,7 @@
 			
 			<div>
 				<p>
+				<c:if test="${user.jobinfoId==7}">
 					<label for="customStatu" class="label-top">客户状态:</label><select id="customStatu"
 						panelHeight="auto" class="easyui-combobox" name="customStatu" style="width:100px;"
 						data-options="editable:false">
@@ -113,6 +114,14 @@
 						<option value="4">死单</option>
 						<option value="5">已报名</option>
 					</select>
+				</c:if>
+				<c:if test="${user.jobinfoId==5}">
+					<label for="customStatu" class="label-top">客户状态:</label><select id="customStatu"
+						panelHeight="auto" class="easyui-combobox" name="customStatu" style="width:100px;"
+						data-options="editable:false">
+						<option value="0" selected="selected">新增未上门</option>
+					</select>
+				</c:if>
 				</p>
 			</div>
 		</form>

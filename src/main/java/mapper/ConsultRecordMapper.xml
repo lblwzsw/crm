@@ -106,7 +106,7 @@
   <select id="queryCount" resultType="java.lang.Integer">
   select count(*) from consult_record cr,custom c
 	<where>
-		cr.c_id=c.id
+		cr.c_id=c.id and cr.consult_man_id = #{consultManId}
 		<if test="customName != null" >
         and c.name like #{customName}
       	</if>
@@ -116,13 +116,16 @@
       	<if test="consultDate != null" >
         and cr.consult_date between #{consultDate,jdbcType=DATE} and #{endDate,jdbcType=DATE}
       	</if>
-      	and cr.consult_man_id = #{consultManId}
+      	<if test="customName == null and customPhoneNo == null and consultDate == null">
+     	and consult_date>=date_add(curdate(),interval -day(curdate())+1 day)
+      	</if>
 	</where>
   </select>
-  <select id="selectByConsultManId" resultType="java.util.HashMap">
-  	select cr.id id, cr.c_id customId, c.name customName, c.phone_no customPhoneNo, cr.consult_statu consultStatu, cr.consult_date consultDate, cr.result result from consult_record cr,custom c
+  <select id="selectByConsultManIdSelective" resultType="java.util.HashMap">
+  	select count(*) total, cr.id id, cr.c_id customId, c.name customName, c.phone_no customPhoneNo, cr.consult_statu consultStatu, cr.consult_date consultDate, cr.result result 
+  	from consult_record cr,custom c
 	<where>
-		cr.c_id=c.id
+		cr.c_id=c.id and cr.consult_man_id = #{consultManId}
 		<if test="customName != null" >
         and c.name like #{customName}
       	</if>
@@ -132,21 +135,20 @@
       	<if test="consultDate != null" >
         and cr.consult_date between #{consultDate,jdbcType=DATE} and #{endDate,jdbcType=DATE}
       	</if>
-      	and cr.consult_man_id = #{consultManId}
+      	<if test="customName == null and customPhoneNo == null and consultDate == null">
+     	and consult_date>=date_add(curdate(),interval -day(curdate())+1 day)
+      	</if>
 	</where>
 	limit #{start},#{rows}
   </select>
-  <update id="updateRecord">
+  <update id="updateStatu">
   	update consult_record set consult_statu=#{consultStatu} where id=#{id}
   </update>
-  <select id="queryCountCurrentMonth" resultType="java.util.HashMap">
-  	SELECT total,newAllot,following,signed,denied,refundment
-	FROM
-	(SELECT count(consult_statu) newAllot, sum(consult_statu='1') following, sum(consult_statu='2') signed, sum(consult_statu='3') denied, sum(consult_statu='4') refundment
+  <select id="selectForCountOnCurrentMonthByCId" resultType="java.util.HashMap">
+  	SELECT count(consult_statu) total, sum(consult_statu='0') newAllot, sum(consult_statu='1') following, sum(consult_statu='2') signed, sum(consult_statu='3') denied, sum(consult_statu='4') refundment
 	FROM consult_record 
-	WHERE consult_man_id=#{consultManId} and consult_date>=date_add(curdate(),interval -day(curdate())+1 day)) t1
-	JOIN
-	(SELECT count(*) total FROM consult_record WHERE consult_man_id=#{consultManId}) t2
+	WHERE consult_man_id=#{consultManId} and consult_date>=date_add(curdate(),interval -day(curdate())+1 day)
+
   </select>
   <select id="queryAllCountCurrentMonth" resultType="java.util.HashMap">
 	SELECT count(consult_statu) total, sum(consult_statu='1') following, sum(consult_statu='2') signed, sum(consult_statu='3') denied, sum(consult_statu='4') refundment

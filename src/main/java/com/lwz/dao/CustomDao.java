@@ -24,7 +24,7 @@ public interface CustomDao {
     
     List<Custom> queryAllCustom(@Param("start") Integer start,@Param("rows") Integer rows,@Param("custom") Custom custom);
     
-    int queryCount();
+    int queryCount(Custom custom);
     
     List<Integer> queryAllCustomForEMT();
     
@@ -32,5 +32,5 @@ public interface CustomDao {
     
     int insertByList(List<Custom> list);
     
-    List<Custom> queryAllCustomNoPage();
+    List<Custom> queryAllCustomNoPage(@Param("type")Integer type);
 }

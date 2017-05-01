@@ -27,6 +27,8 @@ public interface EmployeeDao {
     
     int checkUsername(String username);
     
+    int checkWorkStatu(String username);
+    
     int resetPassByUsername(@Param("username")String username, @Param("pass")String pass);
     
     List<Map<String,Object>> queryAllConsulters();
@@ -38,4 +40,6 @@ public interface EmployeeDao {
     List<Map<String,Object>> selectAllEmp();
     
     List<Map<String,Object>> empForDepart(Integer departmentId);
+    
+    int updateByUsername(String username);
 }

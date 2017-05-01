@@ -28,7 +28,7 @@
       #{pid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.lwz.entity.Right" >
-    insert into right
+    insert into t_right
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,

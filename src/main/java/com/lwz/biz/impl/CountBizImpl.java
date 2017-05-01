@@ -22,11 +22,11 @@ public class CountBizImpl {
 	
 	public List<Map<String,Object>> countInfo(Integer followManId){
 		 
-		return customInfoDao.queryCountCurrentMonth(followManId);
+		return customInfoDao.selectForCountOnCurrentMonthByFId(followManId);
 	}
 	
 	public List<Map<String,Object>> countConsult(Integer consultManId){
 		
-		return consultRecordDao.queryCountCurrentMonth(consultManId);
+		return consultRecordDao.selectForCountOnCurrentMonthByCId(consultManId);
 	}
 }

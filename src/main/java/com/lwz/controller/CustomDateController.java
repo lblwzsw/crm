@@ -40,6 +40,8 @@ import com.lwz.entity.Department;
 @Controller
 public class CustomDateController {
 	
+	private ObjectMapper oMapper = new ObjectMapper();
+	
 	@Resource
 	private CustomDateBizImpl customdateBiz;
 	
@@ -54,7 +56,6 @@ public class CustomDateController {
 	@RequestMapping(value="queryCustom", produces="application/json;charset=utf-8")
 	public @ResponseBody String queryCustom(Integer page, Integer rows, Custom custom){
 		Map<String, Object> map = customdateBiz.queryCustom(page, rows, custom);
-		ObjectMapper oMapper = new ObjectMapper();
 		String json = "";
 		try {
 			json = oMapper.writeValueAsString(map);
@@ -66,7 +67,6 @@ public class CustomDateController {
 	@RequestMapping(value="queryConsulters", produces="application/json;charset=utf-8")
 	public @ResponseBody String queryConsulters(){
 		List<Map<String, Object>> list = customdateBiz.queryAllConsulters();
-		ObjectMapper oMapper = new ObjectMapper();
 		String json = "";
 		try {
 			json = oMapper.writeValueAsString(list);

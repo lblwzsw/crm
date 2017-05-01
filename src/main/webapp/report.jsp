@@ -65,11 +65,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     <div id="sales-dlg" class="easyui-dialog" closed="true" modal="false" border="false" shadow="false"
 		noheader='true'>
-		<table id="sales-dg" style="width:503px;height: 100px" class="easyui-datagrid" closable='true'>
+		<table id="sales-dg" style="width:703px;height: 100px" class="easyui-datagrid" closable='true'>
 			<thead>
 				<tr>
+					<th field="newAllot" width="100" align="center">新增客户数</th>
 					<th field="visited" width="100" align="center">已上门客户数</th>
 					<th field="disConnect" width="100" align="center">未接通客户数</th>
+					<th field="invalid" width="100" align="center">电话无效客户数</th>
 					<th field="denied" width="100" align="center">死单客户数</th>
 					<th field="following" width="100" align="center">紧跟客户数</th>
 					<th field="total" width="100" align="center">总分配客户数</th>
@@ -79,9 +81,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<div id="consulter-dlg" class="easyui-dialog" closed="true" modal="false" border="false" shadow="false"
 		noheader='true'>
-		<table id="consulter-dg" style="width:503px;height: 100px" class="easyui-datagrid" closable='true'>
+		<table id="consulter-dg" style="width:603px;height: 100px" class="easyui-datagrid" closable='true'>
 			<thead>
 				<tr>
+					<th field="newAllot" width="100" align="center">新增客户数</th>
 					<th field="following" width="100" align="center">紧跟客户数</th>
 					<th field="signed" width="100" align="center">已报名客户数</th>
 					<th field="denied" width="100" align="center">死单客户数</th>

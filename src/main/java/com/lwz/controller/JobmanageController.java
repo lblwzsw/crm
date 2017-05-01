@@ -32,4 +32,20 @@ public class JobmanageController {
 		}
 		return json;
 	}
+	
+	@RequestMapping(value="insertJob")
+	public @ResponseBody String insertJob(Job job){
+		return jobmanageBiz.insertJob(job);
+	}
+	
+	@RequestMapping(value="updateJob")
+	public @ResponseBody String updateJob(Job job){
+		jobmanageBiz.updateJob(job);
+		return "";
+	}
+	@RequestMapping(value="deleteJob")
+	public @ResponseBody String deleteJob(Integer id){
+		jobmanageBiz.deleteJob(id);
+		return "";
+	}
 }

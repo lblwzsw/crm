@@ -171,9 +171,6 @@
 	<div style="margin: 50px auto;width: 605px;">
 	<div id="rt-query"  class="easyui-panel" closed="true">
 		<div id="rt-toolbar">
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:$('#rt-dg').edatagrid('saveRow')">保存修改</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:$('#rt-dg').edatagrid('cancelRow')">退出编辑</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:$('#rt-dg').edatagrid('destroyRow')">删除</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-back" plain="true" onclick="javascript:$('#rt-query').panel('close')">退出</a>
     </div>
 	<table id="rt-dg" style="width:600px;height:600px;" 
@@ -186,11 +183,11 @@
 		<thead>
 			<tr>
 				<th field="id" width="100" align="center">权限编号</th>
-				<th field="rName" width="150"  align="center" editor="type:'validatebox',options:{required:true}">权限名称</th>
+				<th field="rName" width="150"  align="center">权限名称</th>
 				<th field="rType" width="100" align="center" 
-				formatter="format" editor="{type:'combobox',options:{data:[{'rType':'1','text':'一级权限'},{'rType':'2','text':'二级权限'}],valueField:'rType',textField:'text'}}">权限等级</th>
-				<th field="url" width="100"  align="center" editor="type:'validatebox',options:{required:true}" >url</th>
-				<th field="pid" width="100" align="center" editor="{type:'numberbox',options:{precision:0}}">所属权限</th>
+				formatter="format">权限等级</th>
+				<th field="url" width="100"  align="center">url</th>
+				<th field="pid" width="100" align="center">所属权限</th>
 			</tr>
 		</thead>
 	</table>

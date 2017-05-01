@@ -32,7 +32,7 @@
 
 			<div>
 				<p>
-					<label for="departmentId" class="label-top">所属权限：</label><select id="departmentId" class="easyui-combobox" name="departmentId" style="width:100px;" data-options="editable:false">
+					<label for="departmentId" class="label-top">所属部门：</label><select id="departmentId" class="easyui-combobox" name="dId" style="width:100px;" data-options="editable:false">
 						<option value="1" selected="selected">技术部</option>
 						<option value="2">销售部</option>
 						<option value="3">线上咨询部</option>

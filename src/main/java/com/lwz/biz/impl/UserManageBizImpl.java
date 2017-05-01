@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lwz.dao.DepartmentDao;
 import com.lwz.dao.EmployeeDao;
@@ -50,11 +49,22 @@ public class UserManageBizImpl {
 	public List<Resetpass> querRestRequest(){
 		return resetpassDao.querRestRequest();
 	}
-	public @ResponseBody int resetPass(Resetpass resetPass, String pass){
+	public int resetPass(Resetpass resetPass, String pass){
 		employeeDao.resetPassByUsername(resetPass.getUsername(), pass);
 		if(resetpassDao.deleteById(resetPass.getId())==1){
 			return 1;
 		}
 		return 0;
+	}
+	public String cancleUser(String username){
+		if(employeeDao.checkUsername(username)==0){
+			return "0";
+		}else if(employeeDao.checkWorkStatu(username)==0){
+			return "2";
+		}else if(employeeDao.updateByUsername(username)==1){
+			return "1";
+		}else {
+			return "-1";
+		}
 	}
 }

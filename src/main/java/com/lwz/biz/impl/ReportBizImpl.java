@@ -7,10 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFEvaluationWorkbook;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -19,12 +21,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lwz.dao.ConsultRecordDao;
 import com.lwz.dao.CustomDao;
 import com.lwz.dao.CustomInfoDao;
 import com.lwz.dao.EmployeeDao;
 import com.lwz.entity.Custom;
+import com.lwz.util.ExcelUtils;
 
 @Service
 public class ReportBizImpl {
@@ -50,10 +54,11 @@ public class ReportBizImpl {
 		}
 	}
 	public ResponseEntity<byte[]> exportCustom(Integer type) throws IOException{
-		List<Custom> list = customDao.queryAllCustomNoPage();
+		List<Custom> list = customDao.queryAllCustomNoPage(type);
 		HSSFWorkbook workbook = new HSSFWorkbook();
 	    //获取参数个数作为excel列数
 	    int columeCount = 9;
+
 	    HSSFSheet sheet = workbook.createSheet("客户报表");
 	    //创建第一栏
 	    HSSFRow headRow = sheet.createRow(0);
@@ -79,15 +84,39 @@ public class ReportBizImpl {
 	        HSSFRow row = sheet.createRow(index+1);
 	        for(int n=0;n<=columeCount-1;n++)
 	            row.createCell(n);
-	        System.out.println(entity);
+	        
+	        String education = entity.getEducation();
+	        if("1".equals(education)){
+	        	education = "本科";
+	        }else if("2".equals(education)){
+	        	education = "高中";
+	        }else if("3".equals(education)){
+	        	education = "专科";
+	        }else{
+	        	education = "硕士";
+	        }
+	        String customStatu = entity.getCustomStatu();
+	        if("0".equals(customStatu)){
+	        	customStatu = "新增未上门";
+	        }else if("1".equals(customStatu)){
+	        	customStatu = "新增已上门";
+	        }else if("2".equals(customStatu)){
+	        	customStatu = "销售跟进中";
+	        }else if("3".equals(customStatu)){
+	        	customStatu = "咨询跟进中";
+	        }else if("4".equals(customStatu)){
+	        	customStatu = "死单";
+	        }else {
+	        	customStatu = "已报名";
+	        }
 	        row.getCell(0).setCellValue(entity.getId());
 	        row.getCell(1).setCellValue(entity.getName());
-	        row.getCell(2).setCellValue(entity.getEducation());
+	        row.getCell(2).setCellValue(education);
 	        row.getCell(3).setCellValue(entity.getPhoneNo());
-	        row.getCell(4).setCellValue(entity.getQq()==null?0:entity.getQq());
+	        row.getCell(4).setCellValue(entity.getQq()==null?"0":String.valueOf(entity.getQq()));
 	        row.getCell(5).setCellValue(entity.getEmail());
-	        row.getCell(6).setCellValue(entity.getCustomStatu());
-	        row.getCell(7).setCellValue(entity.getCreateDate());
+	        row.getCell(6).setCellValue(customStatu);
+	        row.getCell(7).setCellValue(new SimpleDateFormat("yyyy-MM-dd").format(entity.getCreateDate()));
 	        row.getCell(8).setCellValue(entity.getInviteName());
 	        index++;
 	    }
@@ -97,5 +126,9 @@ public class ReportBizImpl {
 	    workbook.write(os);
 	    return new ResponseEntity<byte[]>(os.toByteArray(), headers, HttpStatus.OK);
 	    
+	}
+	public void exportCustomInfo(Integer type, Integer followManId , HttpServletResponse response){
+		List<Map<String, Object>> customInfo = customInfoDao.customInfo(type, followManId);
+		ExcelUtils.export(response,"table","test",customInfo);
 	}
 }

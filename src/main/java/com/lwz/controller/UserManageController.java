@@ -29,6 +29,10 @@ public class UserManageController {
 	public @ResponseBody String addUser(Employee employee){
 		String pass = DigestUtils.sha1Hex("123456");
 		employee.setPass(pass);
+		if(employee.getDepartmentId() == null){
+			employee.setDepartmentId(1);
+			employee.setJobinfoId(2);
+		}
 		if(userManageBiz.addUser(employee) == 1){
 			return "1";
 		}
@@ -87,5 +91,9 @@ public class UserManageController {
 			return "1";
 		}
 		return "0";
+	}
+	@RequestMapping(value="cancleUser")
+	public @ResponseBody String cancleUser(String username){
+		return userManageBiz.cancleUser(username);
 	}
 }

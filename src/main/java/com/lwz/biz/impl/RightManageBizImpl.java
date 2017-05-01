@@ -38,4 +38,10 @@ public class RightManageBizImpl {
 	public void insertBind(JobRight jobRight){
 		jobRightDao.insertSelective(jobRight);
 	}
+	public String insertRight(Right right){
+		if(rightDao.insertSelective(right)==1){
+			return "1";
+		}
+		return "0";
+	}
 }

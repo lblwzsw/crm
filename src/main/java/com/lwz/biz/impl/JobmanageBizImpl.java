@@ -18,4 +18,19 @@ public class JobmanageBizImpl {
 	public List<Job> queryAllJobs(){
 		return jobdao.queryAllJobs();
 	}
+	
+	public String insertJob(Job job){
+		if(jobdao.insertSelective(job)==1)
+			return "1";
+		else 
+			return "0";
+	}
+	
+	public void updateJob(Job job){
+		jobdao.updateByPrimaryKeySelective(job);
+	}
+	
+	public void deleteJob(Integer id){
+		jobdao.deleteByPrimaryKey(id);
+	}
 }

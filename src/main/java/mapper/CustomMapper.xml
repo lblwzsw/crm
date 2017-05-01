@@ -160,6 +160,24 @@
   </select>
   <select id="queryCount" resultType="java.lang.Integer">
   	select count(*) from custom
+  	<where>
+	  	<if test="name != null" >
+	    name like #{name,jdbcType=CHAR}  and
+	    </if>
+	    <if test="customStatu != null" >
+	    custom_statu like #{customStatu,jdbcType=CHAR} and
+	    </if>
+	    <if test="inviteName != null" >
+	    invite_name like #{inviteName,jdbcType=CHAR} and
+	    </if>
+	    <if test="phoneNo != null" >
+	    phone_no like #{phoneNo,jdbcType=CHAR} and
+	    </if>
+	    <if test="createDate != null" >
+	    create_date = #{createDate,jdbcType=DATE} and
+	    </if>
+	    1=1
+  	</where>
   </select>
   <select id="queryAllCustomForEMT" resultType="java.lang.Integer">
   	select id from custom where custom_statu='0'
@@ -174,7 +192,15 @@
         (#{item.name},#{item.education},#{item.phoneNo},#{item.qq},#{item.email},#{item.customStatu},#{item.createDate},#{item.inviteName})  
     </foreach>
   </insert>
-  <select id="queryAllCustomNoPage" resultMap="BaseResultMap">
+  <select id="queryAllCustomNoPage"  resultMap="BaseResultMap">x
   	select <include refid="Base_Column_List" /> from custom 
+  	<where>
+  		<if test="type == 1">
+  		YEARWEEK(create_date) = YEARWEEK( now() )
+  		</if>
+  		<if test="type == 2">
+  		create_date>=date_add(curdate(),interval -day(curdate())+1 day)
+  		</if>
+  	</where>
   </select>
 </mapper>

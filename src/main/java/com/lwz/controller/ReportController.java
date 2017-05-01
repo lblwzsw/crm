@@ -63,11 +63,12 @@ public class ReportController {
 		resp.setCharacterEncoding("UTF-8");  
 		return reportBiz.exportCustom(type);
 	}
-	/*@RequestMapping(value="exportCustomInfo")
-	public ResponseEntity<byte[]> exportCustomInfo(){
-		
+	@RequestMapping(value="exportCustomInfo")
+	public @ResponseBody String exportCustomInfo(Integer type,Integer followManId, HttpServletResponse resp){
+		reportBiz.exportCustomInfo(type, followManId, resp);
+		return "1";
 	}
-	@RequestMapping(value="exportConsultRecord")
+	/*@RequestMapping(value="exportConsultRecord")
 	public ResponseEntity<byte[]> exportConsultRecord(){
 		
 	}*/
