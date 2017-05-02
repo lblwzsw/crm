@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import com.lwz.biz.LoginBiz;
 import com.lwz.dao.EmployeeDao;
 import com.lwz.dao.JobRightDao;
+import com.lwz.dao.ResetpassDao;
 import com.lwz.dao.RightDao;
 import com.lwz.entity.Employee;
+import com.lwz.entity.Resetpass;
 import com.lwz.entity.Right;
 
 @Service
@@ -22,7 +24,8 @@ public class LoginBizImpl implements LoginBiz {
 	private JobRightDao jobRightDao;
 	@Resource
 	private RightDao rightDao;
-	
+	@Resource
+	private ResetpassDao resetpassDao;
 	
 	/* (non-Javadoc)
 	 * @see com.lwz.biz.impl.LoginBiz#checkLogin(java.lang.String, java.lang.String)
@@ -53,6 +56,19 @@ public class LoginBizImpl implements LoginBiz {
 		if(employeeDao.checkPass(id, pass)==0){
 			return "0";
 		}else if(employeeDao.updateByPrimaryKeySelective(user)==1){
+			return "1";
+		}else{
+			return "-1";
+		}
+	}
+	
+	public String reqResetPass(String username, String phoneNo){
+		Resetpass record = new Resetpass();
+		record.setUsername(username);
+		record.setPhoneNo(phoneNo);
+		if(employeeDao.checkByUsernamePhone(username, phoneNo)==0){
+			return "0";
+		}else if(resetpassDao.insertSelective(record)==1){
 			return "1";
 		}else{
 			return "-1";

@@ -193,4 +193,7 @@
   <select id="checkPass" resultType="java.lang.Integer">
   	select count(*) from employee where id=#{id} and pass=#{pass}
   </select>
+  <select id="checkByUsernamePhone" resultType="java.lang.Integer">
+  	select count(*) from employee where username=#{username} and phone_no=#{phoneNo}
+  </select>
 </mapper>

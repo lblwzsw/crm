@@ -13,4 +13,5 @@ public interface LoginBiz {
 
 	String changePass(Integer id, String pass, String newPass);
 	
+	String reqResetPass(String username, String phoneNo);
 }

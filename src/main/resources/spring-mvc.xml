@@ -20,6 +20,7 @@
     		<mvc:mapping path="/*.do"/>
     		<mvc:exclude-mapping path="/index.do"/>
     		<mvc:exclude-mapping path="/login.do"/>
+    		<mvc:exclude-mapping path="/reqResetPass.do"/>
     		<bean class="com.lwz.interceptor.LoginInterceptor"></bean>
     	</mvc:interceptor>
     </mvc:interceptors>

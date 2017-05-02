@@ -129,6 +129,9 @@
 					$.messager.alert('OK', '重置密码请求已发出,请等待管理员处理!', 'info');
 
 				}
+				if(data == 0) {
+					$.messager.alert('ERROR', '用户名电话不匹配', 'info');
+				}
 			}
 		});
 		

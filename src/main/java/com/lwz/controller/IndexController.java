@@ -48,4 +48,8 @@ public class IndexController {
 	public @ResponseBody String changePass(Integer id, String pass, String newPass){
 		return loginBiz.changePass(id, pass, newPass);
 	}
+	@RequestMapping("reqResetPass")
+	public @ResponseBody String reqResetPass(String username, String phoneNo){
+		return loginBiz.reqResetPass(username, phoneNo);
+	}
 }

@@ -44,4 +44,6 @@ public interface EmployeeDao {
     int updateByUsername(String username);
     
     int checkPass(@Param("id")Integer id, @Param("pass")String pass);
+    
+    int checkByUsernamePhone(@Param("username")String username, @Param("phoneNo") String phoneNo);
 }
