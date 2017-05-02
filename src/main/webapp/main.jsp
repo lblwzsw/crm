@@ -62,7 +62,7 @@
 		oldPwd=hex_sha1(oldPwd);
 		var newPwd=hex_sha1($("#newPass").val());
 		
-		$.post("changePass.do",{employeeId:"${user.id}",pass:oldPwd,newPass:newPwd},function(data){
+		$.post("changePass.do",{id:"${user.id}",pass:oldPwd,newPass:newPwd},function(data){
 			
 			if(data=="1"){
 				

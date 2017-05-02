@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lwz.biz.impl.CustomDevBizImpl;
+import com.lwz.biz.CustomDevBiz;
 import com.lwz.entity.CustomInfo;
 
 @Controller
@@ -23,7 +23,7 @@ public class CustomDevController {
 //	private final int SRC_MONTH = 3;
 	
 	@Resource
-	private CustomDevBizImpl cunstomDevBiz;
+	private CustomDevBiz cunstomDevBiz;
 	
 	@RequestMapping(value="customInfo", produces="application/json;charset=utf-8")
 	public @ResponseBody String customInfo(Integer src, Integer followManId){

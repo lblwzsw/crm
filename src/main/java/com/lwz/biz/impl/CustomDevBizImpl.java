@@ -7,13 +7,14 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.lwz.biz.CustomDevBiz;
 import com.lwz.dao.CustomDao;
 import com.lwz.dao.CustomInfoDao;
 import com.lwz.entity.Custom;
 import com.lwz.entity.CustomInfo;
 
 @Service
-public class CustomDevBizImpl {
+public class CustomDevBizImpl implements CustomDevBiz {
 
 //	private final int SRC_TODAY = 0; start_date=curdate()
 //	private final int SRC_HISTORY = 1;start_date<date_add(curdate(),interval -day(curdate())+1 day)
@@ -25,14 +26,23 @@ public class CustomDevBizImpl {
 	@Resource
 	private CustomDao customDao;
 	
+	/* (non-Javadoc)
+	 * @see com.lwz.biz.impl.CustomDevBiz#customInfo(java.lang.Integer, java.lang.Integer)
+	 */
 	public List<Map<String,Object>> customInfo(Integer src, Integer followManId){
 		return customInfoDao.customInfo(src, followManId);
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.lwz.biz.impl.CustomDevBiz#addMark(com.lwz.entity.CustomInfo)
+	 */
 	public int addMark(CustomInfo customInfo){
 		return customInfoDao.updateByPrimaryKeySelective(customInfo);
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.lwz.biz.impl.CustomDevBiz#updateCustomInfo(com.lwz.entity.CustomInfo)
+	 */
 	public void updateCustomInfo(CustomInfo customInfo){
 		String statu = customInfo.getStatu();
 		Custom custom = new Custom();

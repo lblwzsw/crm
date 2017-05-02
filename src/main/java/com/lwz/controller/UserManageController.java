@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lwz.biz.impl.UserManageBizImpl;
+import com.lwz.biz.UserManageBiz;
 import com.lwz.entity.Department;
 import com.lwz.entity.Employee;
 import com.lwz.entity.Job;
@@ -23,7 +23,7 @@ import com.lwz.entity.Resetpass;
 public class UserManageController {
 
 	@Resource
-	private UserManageBizImpl userManageBiz;
+	private UserManageBiz userManageBiz;
 	
 	@RequestMapping(value="addUser")
 	public @ResponseBody String addUser(Employee employee){

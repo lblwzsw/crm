@@ -23,6 +23,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.lwz.biz.ReportBiz;
 import com.lwz.dao.ConsultRecordDao;
 import com.lwz.dao.CustomDao;
 import com.lwz.dao.CustomInfoDao;
@@ -31,7 +32,7 @@ import com.lwz.entity.Custom;
 import com.lwz.util.ExcelUtils;
 
 @Service
-public class ReportBizImpl {
+public class ReportBizImpl implements ReportBiz {
 
 	@Resource
 	private EmployeeDao employeeDao;
@@ -42,10 +43,16 @@ public class ReportBizImpl {
 	@Resource
 	private CustomDao customDao;
 	
+	/* (non-Javadoc)
+	 * @see com.lwz.biz.impl.ReportBiz#allEmployees()
+	 */
 	public List<Map<String,Object>> allEmployees(){
 		return employeeDao.selectAllEmp();
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.lwz.biz.impl.ReportBiz#countInfoForDepart(java.lang.Integer)
+	 */
 	public List<Map<String,Object>> countInfoForDepart(Integer departmentId){
 		if(departmentId==4){//线下咨询部
 			return consultRecordDao.queryAllCountCurrentMonth();
@@ -53,6 +60,9 @@ public class ReportBizImpl {
 			return customInfoDao.queryAllCountCurrentMonth(departmentId);
 		}
 	}
+	/* (non-Javadoc)
+	 * @see com.lwz.biz.impl.ReportBiz#exportCustom(java.lang.Integer)
+	 */
 	public ResponseEntity<byte[]> exportCustom(Integer type) throws IOException{
 		List<Custom> list = customDao.queryAllCustomNoPage(type);
 		HSSFWorkbook workbook = new HSSFWorkbook();
@@ -127,8 +137,21 @@ public class ReportBizImpl {
 	    return new ResponseEntity<byte[]>(os.toByteArray(), headers, HttpStatus.OK);
 	    
 	}
+	/* (non-Javadoc)
+	 * @see com.lwz.biz.impl.ReportBiz#exportCustomInfo(java.lang.Integer, java.lang.Integer, javax.servlet.http.HttpServletResponse)
+	 */
 	public void exportCustomInfo(Integer type, Integer followManId , HttpServletResponse response){
+		if(type == 1){
+			type = 4;
+		}else if(type == 2){
+			type = 3;
+		}
 		List<Map<String, Object>> customInfo = customInfoDao.customInfo(type, followManId);
 		ExcelUtils.export(response,"table","test",customInfo);
+	}
+	
+	public void exportConsultRecord(Integer type, Integer consultManId, HttpServletResponse response){
+		List<Map<String, Object>> consultRecord = consultRecordDao.selectByConsultManIdNoPage(type, consultManId);
+		ExcelUtils.export(response,"table","test",consultRecord);
 	}
 }

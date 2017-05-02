@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.lwz.biz.impl.LoginBizImpl;
+import com.lwz.biz.LoginBiz;
 import com.lwz.entity.Employee;
 import com.lwz.entity.Right;
 
@@ -18,7 +18,7 @@ import com.lwz.entity.Right;
 public class IndexController {
 
 	@Resource
-	LoginBizImpl loginBiz;
+	LoginBiz loginBiz;
 	
 	@RequestMapping("login")
 	public @ResponseBody String login(String username, String pass, HttpServletRequest req){
@@ -38,5 +38,14 @@ public class IndexController {
 	@RequestMapping("index")
 	public String index(){
 		return "login";
+	}
+	@RequestMapping("logout")
+	public String logout(HttpServletRequest req){
+		req.getSession().invalidate();
+		return "login";
+	}
+	@RequestMapping("changePass")
+	public @ResponseBody String changePass(Integer id, String pass, String newPass){
+		return loginBiz.changePass(id, pass, newPass);
 	}
 }

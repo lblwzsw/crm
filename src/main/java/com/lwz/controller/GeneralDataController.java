@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lwz.biz.impl.GeneralDataBizImpl;
+import com.lwz.biz.GeneralDataBiz;
 
 @Controller
 public class GeneralDataController {
 
 	@Resource
-	private GeneralDataBizImpl generalDataBiz;
+	private GeneralDataBiz generalDataBiz;
 	
 	@RequestMapping(value="empForJobId", produces="application/json;charset=utf-8")	
 	public @ResponseBody String empForJobId(String jobinfoId){

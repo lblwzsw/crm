@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lwz.biz.impl.CustomConsultBizImpl;
+import com.lwz.biz.CustomConsultBiz;
 import com.lwz.entity.ConsultRecord;
 
 @Controller
 public class CustomConsultController {
 
 	@Resource
-	private CustomConsultBizImpl customConsultBiz;
+	private CustomConsultBiz customConsultBiz;
 	
 	@RequestMapping(value="queryRecord", produces="application/json;charset=utf-8")
 	public @ResponseBody String queryRecord(Integer page, Integer rows,Integer consultManId, String customName, String customPhoneNo, Date consultDate, Date endDate){

@@ -181,11 +181,16 @@
   	where e.jobInfo_id=j.id and e.department_id=d.id and e.work_statu='1'
   </select>
   <select id="empForDepart" resultType="java.util.HashMap">
-  	select id,realname,nickname,phone_no phoneNo,office_tel officeTel from employee where department_id=#{departmentId}
+  	select id,realname,nickname,phone_no phoneNo,office_tel officeTel 
+  	from employee 
+  	where department_id=#{departmentId} and jobinfo_id NOT IN (6,9,4)
   </select>
   <update id="updateByUsername">
   	update employee
   	set work_statu = 0 
   	where username = #{username}
   </update>
+  <select id="checkPass" resultType="java.lang.Integer">
+  	select count(*) from employee where id=#{id} and pass=#{pass}
+  </select>
 </mapper>

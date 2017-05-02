@@ -19,9 +19,9 @@ public interface EmployeeDao {
 
     Employee selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(Employee record);
+    int updateByPrimaryKeySelective(Employee user);
 
-    int updateByPrimaryKey(Employee record);
+    int updateByPrimaryKey(Employee user);
     
     Employee selectByUsername(@Param("username")String username, @Param("pass")String pass);
     
@@ -42,4 +42,6 @@ public interface EmployeeDao {
     List<Map<String,Object>> empForDepart(Integer departmentId);
     
     int updateByUsername(String username);
+    
+    int checkPass(@Param("id")Integer id, @Param("pass")String pass);
 }

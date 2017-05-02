@@ -192,7 +192,7 @@
         (#{item.name},#{item.education},#{item.phoneNo},#{item.qq},#{item.email},#{item.customStatu},#{item.createDate},#{item.inviteName})  
     </foreach>
   </insert>
-  <select id="queryAllCustomNoPage"  resultMap="BaseResultMap">x
+  <select id="queryAllCustomNoPage"  resultMap="BaseResultMap">
   	select <include refid="Base_Column_List" /> from custom 
   	<where>
   		<if test="type == 1">

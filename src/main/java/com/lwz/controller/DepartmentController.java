@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lwz.biz.impl.DepartmentBizImpl;
+import com.lwz.biz.DepartmentBiz;
 
 @Controller
 public class DepartmentController {
@@ -19,7 +19,7 @@ public class DepartmentController {
 	private ObjectMapper oMapper = new ObjectMapper();
 	
 	@Resource
-	private DepartmentBizImpl departmentBiz;
+	private DepartmentBiz departmentBiz;
 	
 	@RequestMapping(value="empForDepart",produces="application/json;charset=utf-8")
 	public @ResponseBody String empForDepart(Integer departmentId){

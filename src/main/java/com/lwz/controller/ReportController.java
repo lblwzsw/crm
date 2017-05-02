@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lwz.biz.impl.ReportBizImpl;
+import com.lwz.biz.ReportBiz;
 
 @Controller
 public class ReportController {
@@ -22,7 +22,7 @@ public class ReportController {
 	private ObjectMapper oMapper = new ObjectMapper();
 	
 	@Resource
-	private ReportBizImpl reportBiz;
+	private ReportBiz reportBiz;
 	
 	@RequestMapping(value="allEmployees", produces="aplication/json;charset=utf-8")
 	public @ResponseBody String allEmployees(){
@@ -68,8 +68,9 @@ public class ReportController {
 		reportBiz.exportCustomInfo(type, followManId, resp);
 		return "1";
 	}
-	/*@RequestMapping(value="exportConsultRecord")
-	public ResponseEntity<byte[]> exportConsultRecord(){
-		
-	}*/
+	@RequestMapping(value="exportConsultRecord")
+	public @ResponseBody String exportConsultRecord(Integer type,Integer consultManId, HttpServletResponse resp){
+		reportBiz.exportConsultRecord(type, consultManId, resp);
+		return "1";
+	}
 }

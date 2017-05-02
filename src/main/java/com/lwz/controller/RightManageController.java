@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
-import com.lwz.biz.impl.RightManageBizImpl;
+import com.lwz.biz.RightManageBiz;
 import com.lwz.entity.JobRight;
 import com.lwz.entity.Right;
 
@@ -21,7 +21,7 @@ public class RightManageController {
 	private ObjectMapper oMapper = new ObjectMapper();
 	
 	@Resource
-	private RightManageBizImpl rightManageBiz;
+	private RightManageBiz rightManageBiz;
 	
 	@RequestMapping(value="queryAllRights", produces="application/json;charset=utf-8")
 	public @ResponseBody String queryAllRights(){

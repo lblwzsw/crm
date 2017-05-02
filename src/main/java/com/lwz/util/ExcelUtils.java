@@ -357,7 +357,7 @@ public class ExcelUtils {
 			
 			
 			// 判断一下表头数组是否有数据
-			if (mapData != null) {
+			if (mapData != null && mapData.size()>0) {
 				// 循环写入表头
 				Set<String> keySet = mapData.get(0).keySet();
 				int i = 0;

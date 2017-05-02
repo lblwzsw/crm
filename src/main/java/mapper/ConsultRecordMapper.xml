@@ -122,7 +122,7 @@
 	</where>
   </select>
   <select id="selectByConsultManIdSelective" resultType="java.util.HashMap">
-  	select count(*) total, cr.id id, cr.c_id customId, c.name customName, c.phone_no customPhoneNo, cr.consult_statu consultStatu, cr.consult_date consultDate, cr.result result 
+  	select cr.id id, cr.c_id customId, c.name customName, c.phone_no customPhoneNo, cr.consult_statu consultStatu, cr.consult_date consultDate, cr.result result 
   	from consult_record cr,custom c
 	<where>
 		cr.c_id=c.id and cr.consult_man_id = #{consultManId}
@@ -140,6 +140,19 @@
       	</if>
 	</where>
 	limit #{start},#{rows}
+  </select>
+  <select id="selectByConsultManIdNoPage" resultType="java.util.HashMap">
+  	select cr.id id, cr.c_id customId, c.name customName, c.phone_no customPhoneNo, cr.consult_statu consultStatu, cr.consult_date consultDate, cr.result result 
+  	from consult_record cr,custom c
+	<where>
+		cr.c_id=c.id and cr.consult_man_id = #{consultManId}
+		<if test="type == 1" >
+        and YEARWEEK(consult_date) = YEARWEEK( now() )
+      	</if>
+      	<if test="type == 2" >
+        and consult_date>=date_add(curdate(),interval -day(curdate())+1 day)
+      	</if>
+	</where>
   </select>
   <update id="updateStatu">
   	update consult_record set consult_statu=#{consultStatu} where id=#{id}

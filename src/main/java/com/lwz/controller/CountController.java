@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lwz.biz.impl.CountBizImpl;
+import com.lwz.biz.CountBiz;
 
 @Controller
 public class CountController {
@@ -19,7 +19,7 @@ public class CountController {
 	private ObjectMapper oMapper = new ObjectMapper();
 	
 	@Resource
-	private CountBizImpl countBiz;
+	private CountBiz countBiz;
 	
 	@RequestMapping(value="countInfo", produces="application/json;charset=utf-8")
 	public @ResponseBody String countInfo(Integer followManId){

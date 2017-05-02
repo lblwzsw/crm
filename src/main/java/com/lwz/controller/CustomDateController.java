@@ -32,7 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lwz.biz.impl.CustomDateBizImpl;
+import com.lwz.biz.CustomDateBiz;
 import com.lwz.entity.ConsultRecord;
 import com.lwz.entity.Custom;
 import com.lwz.entity.Department;
@@ -43,7 +43,7 @@ public class CustomDateController {
 	private ObjectMapper oMapper = new ObjectMapper();
 	
 	@Resource
-	private CustomDateBizImpl customdateBiz;
+	private CustomDateBiz customdateBiz;
 	
 	@RequestMapping(value="insertCustom")
 	public @ResponseBody String insertCustom(Custom custom){
@@ -105,10 +105,9 @@ public class CustomDateController {
 	}
 	@Test
 	@RequestMapping(value="batchImportCustom")
-	public @ResponseBody String batchImportCustom() throws IOException, ParseException{
+	public @ResponseBody String batchImportCustom(MultipartFile file) throws IOException, ParseException{
 		//MultipartFile file
-		File file = new File("E:\\Code\\rcm\\src\\main\\webapp\\excel\\客户.xls");
-		POIFSFileSystem fs = new POIFSFileSystem(new FileInputStream(file));
+		POIFSFileSystem fs = new POIFSFileSystem(file.getInputStream());
 		HSSFWorkbook wb = new HSSFWorkbook(fs);  
 		HSSFSheet sheet = wb.getSheet("Sheet1"); 
 		List<Custom> list = new LinkedList<Custom>();

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lwz.biz.impl.JobmanageBizImpl;
+import com.lwz.biz.JobManageBiz;
 import com.lwz.entity.Job;
 
 @Controller
@@ -19,7 +19,7 @@ public class JobmanageController {
 	private ObjectMapper oMapper = new ObjectMapper();
 	
 	@Resource
-	private JobmanageBizImpl jobmanageBiz;
+	private JobManageBiz jobmanageBiz;
 	
 	@RequestMapping(value="queryAllJobs", produces="application/json;charset=utf-8")
 	public @ResponseBody String queryAllJobs(){

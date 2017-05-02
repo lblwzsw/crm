@@ -153,6 +153,9 @@
 	<if test="src == 3">
 		and <include refid="SRC_MONTH" />
 	</if>
+	<if test="src == 4">
+		and YEARWEEK(start_date) = YEARWEEK( now() )
+	</if>
 	and follow_man_id = #{followManId}
   	</where>
   </select>
